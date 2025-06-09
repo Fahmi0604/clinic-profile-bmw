@@ -1,0 +1,81 @@
+import { Copyright, Facebook, Instagram, Linkedin, Phone, Youtube } from 'lucide-react'
+import { Label } from './ui/label'
+import Link from 'next/link'
+import Image from 'next/image'
+import Icons from './Icon'
+
+export default function Footer() {
+
+    const menuItems = [
+        {
+            label: "Dokter",
+            href: "/",
+        },
+        {
+            label: "Layanan",
+            href: "/",
+        },
+        {
+            label: "Fasilitas",
+            href: "/",
+        },
+        {
+            label: "Blog",
+            href: "/",
+        }
+    ]
+
+    return (
+        <footer className="w-full bg-footer px-[10%] py-20 md:py-10">
+            <div className='flex flex-col md:flex-row mb-14'>
+                <div className='w-[90%] flex flex-col mb-6 md:mb-0 gap-6 justify-between'>
+                    <Link href="/" className="flex">
+                        <img src="/logo.svg" alt="logo" className="text-white w-36" />
+                        <span className="sr-only">logo</span>
+                    </Link>
+                    <div className="grid md:grid-cols-4 md:max-w-[70%] text-white font-outfit text-lg font-bold py-4">
+                        {menuItems.map((e) => (
+                            <Link
+                                key={e.label}
+                                href={e.href}
+                                className="underline py-4 sm:py-3"
+                            >
+                                {e.label}
+                            </Link>
+                        ))}
+                    </div>
+                </div>
+                <div className='flex flex-col md:flex-row gap-14 md:gap-6'>
+                    <div className='flex flex-col gap-4 text-white font-outfit md:px-[10%]'>
+                        <Label className='text-lg font-bold'>Hubungi Kami:</Label>
+                        <div className='flex items-center gap-x-2'><Icons name="phone" className='w-6 h-6 text-white' /> (061) 88741581</div>
+                        <div className='flex items-center gap-x-2'><Icons name='whatsapp' className='w-6 h-6 text-white' /> 0852 8282 7258</div>
+                        <div className='flex items-center gap-x-2'><Icons name='instagram' className='w-6 h-6 text-white' /> bmw.dentalclinic</div>
+                    </div>
+                    <div className='grid gap-4 text-white font-outfit'>
+                        <Label className='text-lg font-bold'>Lokasi Klinik:</Label>
+                        <p>Jl. Burjamhal No.B4
+                            Petisah Tengah, Kec. Medan Petisah
+                            Kota Medan, Sumatera Utara 20112</p>
+
+                        <Link href={''}>
+                            <u className='cursor-pointer'>Lihat di Google Maps</u>
+                        </Link>
+                    </div>
+                </div>
+            </div>
+
+            {/* <div className="flex justify-between">
+                <div className='flex text-xs gap-1 items-center text-white'>
+                    <Copyright className="h-4 w-4 " /> All rights reserved
+                </div>
+                <div className='flex gap-4 items-center'>
+                    <Facebook className="h-5 w-5 text-white" />
+                    <Instagram className="h-5 w-5 text-white" />
+                    <Youtube className="h-6 w-6 text-white" />
+                    <Linkedin className="h-5 w-5 text-white" />
+                </div>
+            </div> */}
+        </footer>
+    )
+}

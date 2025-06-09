@@ -1,0 +1,46 @@
+import Image from 'next/image';
+import React from 'react'
+import { Button } from './ui/button';
+import Icons from './Icon';
+import { cn } from '@/lib/utils';
+
+type CtaProps = {
+    title: string | React.ReactNode
+    description: string;
+    image: string;
+    classNameImage?: string;
+}
+
+function Cta(props: CtaProps) {
+    const { title, description, image, classNameImage } = props;
+    return (
+        <section className="md:h-[500px] flex flex-col md:flex-row-reverse">
+            <div className="relative">
+                <Image
+                    src={image}
+                    alt="cta"
+                    width={100}
+                    height={100}
+                    className={cn("w-full h-[400px] md:h-full object-cover md:w-[60vw] z-0 block", classNameImage)}
+                />
+                <div className="z-20 bottom-0 md:right-0 absolute w-full -mb-1 md:mb-0 md:-ml-1 h-[50%] md:h-full bg-gradient-to-t md:bg-gradient-to-r from-gold-primary via-gold-primary/70 md:via-gold-primary/30 to-transparent" />
+            </div>
+            <div className="w-full md:w-[65vw] px-4 md:px-0 flex justify-end items-center bg-gold-primary text-heading-1">
+                {/* gotham */}
+                <div className="md:w-fit">
+                    {/* <h1 className="hidden md:block text-5xl font-bold font-gotham mb-4">Healing to Your Tooth Pain, <br /> Perfecting Your Smile </h1> */}
+                    <h2 className="text-[28px] md:text-4xl md:max-w-lg xl:max-w-xl font-bold font-gotham mb-2 md:mb-4">{title}</h2>
+                    <p className="leading-7 mb-6 md:mb-12 md:text-lg md:max-w-md">{description}</p>
+
+                    <div className="flex flex-col md:flex-row gap-4 mb-4">
+                        <Button className="w-full md:w-fit font-outfit font-semibold rounded-full bg-white text-heading-2 cursor-pointer py-6 md:py-4 px-3 mb-4 hover:bg-gray-400">
+                            <Icons name="whatsapp" className="w-6 h-6" /> Reservasi Via WhatsApp
+                        </Button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    )
+}
+
+export default Cta
