@@ -4,6 +4,7 @@ const nextConfig: NextConfig = {
   /* config options here */
   // serverExternalPackages: ["yjs"],
   images: {
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: "https",
