@@ -1,6 +1,7 @@
 import Icons from '@/components/Icon'
 import { Button } from '@/components/ui/button'
 import Image from 'next/image'
+import Link from 'next/link'
 
 export default function DoctorsSection() {
 
@@ -53,9 +54,11 @@ export default function DoctorsSection() {
 
                 <div className='w-full flex justify-center mt-8'>
                     <div className="w-full flex flex-col md:flex-row md:justify-center gap-4">
-                        <Button className="w-full md:w-fit font-outfit font-semibold rounded-full bg-white text-heading-2 cursor-pointer py-6 md:py-4 px-3 hover:bg-gray-400">
-                            Baca Profil Lengkap
-                        </Button>
+                        <Link href={'/dokter'}>
+                            <Button className="w-full md:w-fit font-outfit font-semibold rounded-full bg-white text-heading-2 cursor-pointer py-6 md:py-4 px-3 hover:bg-gray-400">
+                                Baca Profil Lengkap
+                            </Button>
+                        </Link>
 
                         <Button className="w-full md:w-fit font-outfit font-semibold rounded-full bg-gold-primary text-heading-2 cursor-pointer py-6 md:py-4 px-3 hover:bg-gold-secondary">
                             <Icons name="whatsapp" className="w-6 h-6" /> Buat janji dokter

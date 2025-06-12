@@ -84,13 +84,13 @@ export default async function BlogListPage() {
                     <h3 className="text-3xl font-gotham font-bold text-heading-1 mb-6 md:mb-10">Dental Article</h3>
                     <div className='w-full flex flex-col md:flex-row flex-wrap items-stretch gap-5 md:gap-7 xl:gap-10'>
                         {blogs.map((e) => (
-                            <div key={e.id} className='w-full md:w-[31%] flex flex-col gap-4 border border-line-color rounded-xl'>
+                            <Link key={e.id} href={`/blogs/${e.slug}`} className='w-full md:w-[31%] flex flex-col gap-4 border border-line-color rounded-xl'>
                                 <Image
                                     src={e.featuredImage}
                                     alt={e.title}
                                     width={200}
                                     height={200}
-                                    className='w-full h-[275px] object-cover rounded-t-xl'
+                                    className='w-full h-[250px] object-cover rounded-t-xl'
                                 />
                                 <div className='w-full h-full flex flex-col justify-between p-4'>
                                     <div>
@@ -100,10 +100,10 @@ export default async function BlogListPage() {
 
                                     <div className='flex justify-between items-center mt-4'>
                                         <span className='text-caption-2'>{format(e.publishedDate, 'dd MMMM yyyy', { locale: id })}</span>
-                                        <Link href={`/blogs/${e.slug}`} className='text-body-2 flex items-center gap-2 underline'>Baca Selengkapnya <Icons name='arrow-forward' className='w-6 h-6 text-black'></Icons></Link>
+                                        <p className='text-body-2 flex items-center gap-2 underline'>Baca Selengkapnya <Icons name='arrow-forward' className='w-6 h-6 text-black'></Icons></p>
                                     </div>
                                 </div>
-                            </div>
+                            </Link>
                         ))}
                     </div>
                 </div>
