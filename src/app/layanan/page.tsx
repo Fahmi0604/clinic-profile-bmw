@@ -1,7 +1,6 @@
 import { Banner } from '@/components'
 import Cta from '@/components/Cta'
 import Icons from '@/components/Icon'
-import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import Image from 'next/image'
 import Link from 'next/link'

@@ -1,6 +1,6 @@
 // app/blogs/page.tsx
 import Link from 'next/link';
-import { findPublishedBlogs } from '@/lib/models';
+// import { findPublishedBlogs } from '@/lib/models';
 import Image from 'next/image';
 import { format } from 'date-fns'
 import { id } from 'date-fns/locale';
@@ -8,17 +8,17 @@ import Icons from '@/components/Icon';
 
 export const revalidate = 60; // ISR: update list every 60s
 
-async function getBlogs() {
-    return [
-        {
-            title: 'Blog 1',
-            slug: 'blog-1',
-            excerpt: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-            featuredImage: '/assets/images/banner-dokter.webp',
-        },
-    ]
-    return findPublishedBlogs();
-}
+// async function getBlogs() {
+//     return [
+//         {
+//             title: 'Blog 1',
+//             slug: 'blog-1',
+//             excerpt: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+//             featuredImage: '/assets/images/banner-dokter.webp',
+//         },
+//     ]
+//     return findPublishedBlogs();
+// }
 
 export default async function BlogListPage() {
     const blogs = [

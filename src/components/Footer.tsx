@@ -1,27 +1,26 @@
-import { Copyright, Facebook, Instagram, Linkedin, Phone, Youtube } from 'lucide-react'
 import { Label } from './ui/label'
 import Link from 'next/link'
-import Image from 'next/image'
 import Icons from './Icon'
+import Image from 'next/image'
 
 export default function Footer() {
 
     const menuItems = [
         {
             label: "Dokter",
-            href: "/",
+            href: "/dokter",
         },
         {
             label: "Layanan",
-            href: "/",
+            href: "/layanan",
         },
         {
             label: "Fasilitas",
-            href: "/",
+            href: "/fasilitas",
         },
         {
             label: "Blog",
-            href: "/",
+            href: "/blogs",
         }
     ]
 
@@ -30,7 +29,7 @@ export default function Footer() {
             <div className='flex flex-col md:flex-row mb-14'>
                 <div className='w-[90%] flex flex-col mb-6 md:mb-0 gap-6 justify-between'>
                     <Link href="/" className="flex">
-                        <img src="/logo.svg" alt="logo" className="text-white w-36" />
+                        <Image src="/logo.svg" alt="logo" width={24} height={24} className="text-white w-36" />
                         <span className="sr-only">logo</span>
                     </Link>
                     <div className="grid md:grid-cols-4 md:max-w-[70%] text-white font-outfit text-lg font-bold py-4">

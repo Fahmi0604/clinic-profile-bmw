@@ -1,10 +1,10 @@
 // app/blogs/[slug]/page.tsx
 import { notFound } from 'next/navigation';
-import { findBlogBySlug, findAllPublishedBlogSlugs } from '@/lib/models';
+// import { findBlogBySlug, findAllPublishedBlogSlugs } from '@/lib/models';
 import { metaData } from '@/lib/utils/metadata';
 import { Metadata } from 'next';
 import Image from 'next/image';
-import { cache } from "react";
+// import { cache } from "react";
 import JsonLd from '@/lib/components/JsonLd';
 import { format } from 'date-fns';
 import Icons from '@/components/Icon';
@@ -13,9 +13,9 @@ import { id } from 'date-fns/locale';
 
 export const revalidate = 60; // ISR regeneration time (60 seconds)
 
-const getBlog = cache(async (slug: string) => {
-    return findBlogBySlug(slug);
-})
+// const getBlog = cache(async (slug: string) => {
+//     return findBlogBySlug(slug);
+// })
 
 const blogs = [
     {

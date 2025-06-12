@@ -39,11 +39,11 @@ export default function Home() {
             <p className="leading-7 mb-4 md:text-lg md:max-w-md">Dengan perawatan yang tepat dan teknologi canggih, kami siap membantu seluruh keluarga tetap nyaman dan percaya diri di tiap senyuman.</p>
 
             <div className="flex flex-col md:flex-row md:gap-4 mb-8">
-              <Button className="w-full md:w-fit font-outfit font-semibold rounded-full bg-gold-primary text-heading-2 cursor-pointer py-2 px-3 mb-4">
+              <Button className="w-full md:w-fit font-outfit font-semibold rounded-full bg-gold-primary text-heading-2 cursor-pointer py-6 md:py-4 px-3 mb-4 hover:bg-gray-400">
                 <Icons name="whatsapp" className="w-6 h-6" /> Reservasi Via WhatsApp
               </Button>
 
-              <Button className="w-full md:w-fit font-outfit font-semibold rounded-full bg-white text-heading-2 cursor-pointer py-2 px-3">
+              <Button className="w-full md:w-fit font-outfit font-semibold rounded-full bg-white text-heading-2 cursor-pointer py-6 md:py-4 px-3 hover:bg-gold-secondary">
                 <Icons name="phone" className="w-6 h-6" /> <span className="md:mr-2">Hubungi Kami</span>
               </Button>
             </div>

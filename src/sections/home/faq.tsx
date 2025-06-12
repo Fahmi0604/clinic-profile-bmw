@@ -1,6 +1,4 @@
-import Icons from '@/components/Icon'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
-import Image from 'next/image'
 import React from 'react'
 
 export default function FaqPage() {

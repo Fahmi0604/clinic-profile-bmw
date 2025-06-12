@@ -1,25 +1,5 @@
-function MenuIcon(props: any) {
-    return (
-        <svg
-            {...props}
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-        >
-            <line x1="4" x2="20" y1="12" y2="12" />
-            <line x1="4" x2="20" y1="6" y2="6" />
-            <line x1="4" x2="20" y1="18" y2="18" />
-        </svg>
-    )
-}
 
-function WhatsappIcon(props: any) {
+function WhatsappIcon(props: React.SVGProps<SVGSVGElement>) {
     return (
         <svg
             width="24"
@@ -35,7 +15,7 @@ function WhatsappIcon(props: any) {
     )
 }
 
-function PhoneIcon(props: any) {
+function PhoneIcon(props: React.SVGProps<SVGSVGElement>) {
     return (
         <svg
             width="24"
@@ -51,7 +31,7 @@ function PhoneIcon(props: any) {
     )
 }
 
-function InstagramIcon(props: any) {
+function InstagramIcon(props: React.SVGProps<SVGSVGElement>) {
     return (
         <svg
             width="24"
@@ -68,7 +48,7 @@ function InstagramIcon(props: any) {
     )
 }
 
-function ChevronIcon(props: any) {
+function ChevronIcon(props: React.SVGProps<SVGSVGElement>) {
     return (
         <svg
             width="24"
@@ -84,7 +64,7 @@ function ChevronIcon(props: any) {
     )
 }
 
-function StarIcon(props: any) {
+function StarIcon(props: React.SVGProps<SVGSVGElement>) {
     return (
         <svg
             width="24"
@@ -100,7 +80,7 @@ function StarIcon(props: any) {
     )
 }
 
-function ArrowForwardIcon(props: any) {
+function ArrowForwardIcon(props: React.SVGProps<SVGSVGElement>) {
     return (
         <svg
             width="24"
@@ -115,7 +95,8 @@ function ArrowForwardIcon(props: any) {
         </svg>
     )
 }
-function ArrowBackIcon(props: any) {
+
+function ArrowBackIcon(props: React.SVGProps<SVGSVGElement>) {
     return (
         <svg
             width="24"

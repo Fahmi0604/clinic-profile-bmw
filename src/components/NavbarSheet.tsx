@@ -6,6 +6,7 @@ import { useBoolean } from '@/hooks'
 import Link from 'next/link';
 import { Button } from './ui/button';
 import Icons from './Icon';
+import Image from "next/image";
 
 type NavbarSheetProps = {
     menuItems: {
@@ -31,7 +32,7 @@ export default function NavbarSheet({ menuItems = [] }: NavbarSheetProps) {
                 </SheetTrigger>
 
                 <Link href="/" className="flex">
-                    <img src="/logo.svg" alt="logo" className="text-white w-24" />
+                    <Image width={24} height={24} src="/logo.svg" alt="logo" className="text-white w-24" />
                     <span className="sr-only">logo</span>
                 </Link>
 

@@ -1,9 +1,6 @@
 import { BeforeAfter } from "@/components"
 import Icons from "@/components/Icon"
 import { Button } from "@/components/ui/button"
-import { cn } from "@/lib/utils"
-import Image from "next/image"
-import Link from "next/link"
 
 
 function ServiceResultPage() {
