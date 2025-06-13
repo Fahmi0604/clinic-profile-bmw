@@ -32,7 +32,7 @@ export default function FacilitiesPage() {
             <div className='md:max-w-5xl xl:max-w-6xl'>
                 <h3 className="text-2xl md:text-3xl font-gotham font-bold text-heading-1 mb-6 md:mb-10">Fasilitas Terbaik untukmu</h3>
 
-                <div className='w-full flex flex-col md:flex-row justify-around items-center gap-5 md:gap-0'>
+                <div className='w-full flex flex-col md:flex-row justify-around gap-5 md:gap-0'>
                     {facilities.map((e) => (
                         <div key={e.id} className='w-full md:w-[31%] flex flex-col gap-4'>
                             <Image
