@@ -1,19 +1,16 @@
-import type { Metadata } from "next";
+'use client'
+
 import { Outfit } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+// import Footer from "@/components/Footer";
 import { CustomFonts } from "./fonts/custom-fonts";
+// import { PageWrapper } from "@/components";
 
 const outfit = Outfit({
   variable: "--font-outfit",
   subsets: ['latin'],
 });
-
-export const metadata: Metadata = {
-  title: "Home",
-  description: "Home",
-};
 
 export default function RootLayout({
   children,
@@ -27,7 +24,7 @@ export default function RootLayout({
       >
         <Navbar />
         {children}
-        <Footer />
+        {/* <Footer /> */}
       </body>
     </html>
   );

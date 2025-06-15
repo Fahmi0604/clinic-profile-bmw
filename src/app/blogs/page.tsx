@@ -5,6 +5,8 @@ import Image from 'next/image';
 import { format } from 'date-fns'
 import { id } from 'date-fns/locale';
 import Icons from '@/components/Icon';
+import { PageWrapper } from '@/components';
+import { Metadata } from 'next';
 
 export const revalidate = 60; // ISR: update list every 60s
 
@@ -19,6 +21,11 @@ export const revalidate = 60; // ISR: update list every 60s
 //     ]
 //     return findPublishedBlogs();
 // }
+
+export const metadata: Metadata = {
+    title: "Blog",
+    description: "Blog",
+};
 
 export default async function BlogListPage() {
     const blogs = [
@@ -78,7 +85,7 @@ export default async function BlogListPage() {
         //     </div>
         // </main>
 
-        <section className="flex justify-center px-4 py-8 md:py-20">
+        <PageWrapper className="flex justify-center px-4 py-8 md:py-20">
             <div className='w-full md:max-w-5xl xl:max-w-6xl'>
                 <div className='mb-24'>
                     <h3 className="text-3xl font-gotham font-bold text-heading-1 mb-6 md:mb-10">Dental Article</h3>
@@ -108,6 +115,6 @@ export default async function BlogListPage() {
                     </div>
                 </div>
             </div>
-        </section>
+        </PageWrapper>
     );
 }

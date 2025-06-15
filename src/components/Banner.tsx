@@ -1,6 +1,7 @@
 import { cn } from '@/lib/utils';
 import Image from 'next/image'
 import React from 'react'
+import { FadeInFadeOut, SlideIn } from './Animation';
 
 type BannerProps = {
     title: string | React.ReactNode
@@ -16,9 +17,10 @@ export function Banner(props: BannerProps) {
             <div className="relative overflow-hidden h-[325px] md:h-[80vh]">
                 <Image
                     src={image}
-                    alt="logo"
+                    alt="banner"
                     width={100}
                     height={100}
+                    priority={true}
                     className={cn("w-full h-full md:w-[60vw] md:h-full object-cover z-0 block", classNameImage)}
                 />
                 <div className="z-20 bottom-0 md:left-0 absolute w-full md:w-1/2 -mb-1 md:mb-0 md:-ml-1 h-[50%] md:h-full bg-gradient-to-t md:bg-gradient-to-r from-blue-primary via-blue-primary/70 md:via-blue-primary/30 to-transparent" />
@@ -26,9 +28,13 @@ export function Banner(props: BannerProps) {
             <div className="w-full md:w-[65vw] px-4 md:px-0 flex justify-end items-center bg-blue-primary text-white">
                 {/* gotham */}
                 <div className="md:w-fit">
-                    <h1 className="text-4xl xl:text-5xl md:max-w-lg xl:max-w-xl font-bold font-gotham mb-4">{title}</h1>
+                    <FadeInFadeOut delay={0.3} duration={1.2}>
+                        <h1 className="text-4xl xl:text-5xl md:max-w-lg xl:max-w-xl font-bold font-gotham mb-4">{title}</h1>
+                    </FadeInFadeOut>
                     {/* <h1 className="md:hidden text-4xl md:text-5xl font-bold font-gotham mb-4">Tim Dokter <br /> Profesional dan <br /> Terpercaya</h1> */}
-                    <p className="leading-7 mb-10 md:mb-4 md:text-lg md:max-w-lg">{description}</p>
+                    <SlideIn from="top" delay={0.5} duration={1.3}>
+                        <p className="leading-7 mb-10 md:mb-4 md:text-lg md:max-w-lg">{description}</p>
+                    </SlideIn>
                 </div>
             </div>
         </section>

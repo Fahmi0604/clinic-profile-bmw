@@ -1,3 +1,4 @@
+import { FadeInFadeOut, PageWrapper, SlideIn } from "@/components";
 import Cta from "@/components/Cta";
 import Icons from "@/components/Icon";
 import { Button } from "@/components/ui/button";
@@ -7,12 +8,18 @@ import FaqPage from "@/sections/home/faq";
 import ServiceResultPage from "@/sections/home/serviceResults";
 import ServicesPage from "@/sections/home/services";
 import TestimonyPage from "@/sections/home/testimony";
+import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
+export const metadata: Metadata = {
+  title: "Home",
+  description: "Home",
+};
+
 export default function Home() {
   return (
-    <main className="min-h-screen">
+    <PageWrapper className="min-h-screen">
       <section className="flex flex-col md:flex-row-reverse">
         <div className="relative overflow-hidden md:w-[100%] xl:w-[60%]">
           <Image
@@ -34,9 +41,15 @@ export default function Home() {
         <div className="w-full md:max-w-2xl xl:max-w-3xl px-4 md:px-0 flex justify-end items-center bg-blue-primary text-white">
           {/* gotham */}
           <div className="md:w-fit">
-            <h1 className="hidden md:block md:text-4xl xl:text-5xl font-bold font-gotham mb-4">Healing Your Tooth Pain, <br /> Perfecting Your Smile </h1>
-            <h1 className="md:hidden text-4xl md:text-5xl font-bold font-gotham mb-4">Healing Your Tooth <br /> Pain, Perfecting <br /> Your Smile </h1>
-            <p className="leading-7 mb-4 md:text-lg md:max-w-md">Dengan perawatan yang tepat dan teknologi canggih, kami siap membantu seluruh keluarga tetap nyaman dan percaya diri di tiap senyuman.</p>
+            <FadeInFadeOut delay={0.3} duration={1.2}>
+              <>
+                <h1 className="hidden md:block md:text-4xl xl:text-5xl font-bold font-gotham mb-4">Healing Your Tooth Pain, <br /> Perfecting Your Smile </h1>
+                <h1 className="md:hidden text-4xl md:text-5xl font-bold font-gotham mb-4">Healing Your Tooth <br /> Pain, Perfecting <br /> Your Smile </h1>
+              </>
+            </FadeInFadeOut>
+            <SlideIn from="top" delay={0.5} duration={1.3}>
+              <p className="leading-7 mb-4 md:text-lg md:max-w-md">Dengan perawatan yang tepat dan teknologi canggih, kami siap membantu seluruh keluarga tetap nyaman dan percaya diri di tiap senyuman.</p>
+            </SlideIn>
 
             <div className="flex flex-col md:flex-row md:gap-4 mb-8">
               <Button className="w-full md:w-fit font-outfit font-semibold rounded-full bg-gold-primary text-heading-2 cursor-pointer py-6 md:py-4 px-3 mb-4 hover:bg-gold-secondary">
@@ -107,6 +120,6 @@ export default function Home() {
       <TestimonyPage />
       <FaqPage />
       <Cta title="Yuk Mulai Perawatanmu Hari Ini" description="Satu klik menuju senyum sehat" image="/assets/images/cta-home.webp" classNameImage="object-[50%_30%]" />
-    </main>
+    </PageWrapper>
   );
 }

@@ -1,7 +1,13 @@
-import { Banner } from '@/components'
+import { Banner, PageWrapper } from '@/components'
 import Cta from '@/components/Cta'
+import { Metadata } from 'next';
 import Image from 'next/image'
 import React from 'react'
+
+export const metadata: Metadata = {
+    title: "Fasilitas",
+    description: "Fasilitas",
+};
 
 export default function Fasilitas() {
 
@@ -40,7 +46,7 @@ export default function Fasilitas() {
     ]
 
     return (
-        <main className="min-h-screen">
+        <PageWrapper className="min-h-screen">
             <Banner
                 title="Fasilitas Terbaik Untukmu"
                 description="Klinik ramah keluarga yang nyaman untuk anak, dewasa, dan lansia, dilengkapi dengan teknologi modern dan terkini."
@@ -76,6 +82,6 @@ export default function Fasilitas() {
             </section>
             {/* <Cta title={"Jadwalkan perawatan terbaik <br className='hidden md:block' /> untukmu dan keluarga"} description="Satu klik untuk pengalaman terbaik" image="/assets/images/cta-service.webp" classNameImage="object-[30%_50%] md:object-[50%_50%]" /> */}
             <Cta title={"Kenyamanan & Teknologi, Kini Bisa Kamu Rasakan"} description="Satu klik untuk rasakan perbedaanya" image="/assets/images/cta-facilities.webp" classNameImage="object-[30%_50%] md:object-[50%_50%]" />
-        </main>
+        </PageWrapper>
     )
 }

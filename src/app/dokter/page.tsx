@@ -1,7 +1,13 @@
-import { Banner } from '@/components'
+import { Banner, PageWrapper } from '@/components'
 import Cta from '@/components/Cta'
+import { Metadata } from 'next';
 import Image from 'next/image'
 import React from 'react'
+
+export const metadata: Metadata = {
+    title: "Dokter",
+    description: "Dokter",
+};
 
 export default function Dokter() {
 
@@ -105,7 +111,7 @@ export default function Dokter() {
     ]
 
     return (
-        <main className="min-h-screen">
+        <PageWrapper className="min-h-screen">
             <Banner
                 title="Tim Dokter Profesional dan Terpercaya"
                 description='BMW Dental Clinic memiliki tim dokter gigi umum dan spesialis yang berpengalaman dan berdedikasi untuk memberikan perawatan terbaik bagimu dan keluarga.'
@@ -161,6 +167,6 @@ export default function Dokter() {
                 </div>
             </section>
             <Cta title="Temui Dokter Favoritmu Hari ini" description="Satu klik untuk buat jadwalmu" image="/assets/images/cta-dokter.webp" classNameImage="object-[50%_80%] md:object-[50%_40%]" />
-        </main>
+        </PageWrapper>
     )
 }

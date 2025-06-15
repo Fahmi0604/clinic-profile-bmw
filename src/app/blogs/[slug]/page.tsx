@@ -10,6 +10,7 @@ import { format } from 'date-fns';
 import Icons from '@/components/Icon';
 import Link from 'next/link';
 import { id } from 'date-fns/locale';
+import { PageWrapper } from '@/components';
 
 export const revalidate = 60; // ISR regeneration time (60 seconds)
 
@@ -106,7 +107,7 @@ export default async function BlogPage({ params }: { params: Promise<{ slug: str
     return (
         <>
             <JsonLd schemaType='BlogPosting' data={blog} />
-            <section className="flex justify-center px-4 py-8 md:py-20">
+            <PageWrapper className="flex justify-center px-4 py-8 md:py-20">
                 <div className='w-full md:max-w-3xl xl:max-w-4xl'>
                     <div className='flex justify-between items-center mb-10'>
                         <Link href={`/blogs`} className='text-body-2 flex items-center gap-2 underline'> <Icons name='arrow-back' className='w-6 h-6 text-black' /> Kembali ke Blog</Link>
@@ -125,7 +126,7 @@ export default async function BlogPage({ params }: { params: Promise<{ slug: str
                     {/* <p className='text-stone-400'>by {blog.author.name}</p> */}
                     <article className='mt-6 prose lg:prose-lg' dangerouslySetInnerHTML={{ __html: blog.content }} />
                 </div>
-            </section>
+            </PageWrapper>
         </>
     );
 }

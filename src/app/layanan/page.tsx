@@ -1,10 +1,16 @@
-import { Banner } from '@/components'
+import { Banner, PageWrapper } from '@/components'
 import Cta from '@/components/Cta'
 import Icons from '@/components/Icon'
 import { cn } from '@/lib/utils'
+import { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
+
+export const metadata: Metadata = {
+    title: "Layanan",
+    description: "Layanan",
+};
 
 export default function Layanan() {
 
@@ -70,7 +76,7 @@ export default function Layanan() {
     }
 
     return (
-        <main className="min-h-screen">
+        <PageWrapper className="min-h-screen">
             {/* <section className="flex flex-col md:flex-row-reverse">
                 <div className="relative overflow-hidden h-[325px] md:h-[80vh]">
                     <Image
@@ -139,6 +145,6 @@ export default function Layanan() {
             </section>
             {/* <Cta title={"Jadwalkan perawatan terbaik <br className='hidden md:block' /> untukmu dan keluarga"} description="Satu klik untuk pengalaman terbaik" image="/assets/images/cta-service.webp" classNameImage="object-[30%_50%] md:object-[50%_50%]" /> */}
             <Cta title={"Jadwalkan perawatan terbaik untukmu dan keluarga"} description="Satu klik untuk pengalaman terbaik" image="/assets/images/cta-service.webp" classNameImage="object-[30%_50%] md:object-[50%_50%]" />
-        </main>
+        </PageWrapper>
     )
 }
