@@ -7,14 +7,8 @@ const nextConfig: NextConfig = {
     unoptimized: true,
     remotePatterns: [
       {
-        protocol: "https",
-        hostname: "miro.medium.com",
-        // port: '',
-        // pathname: '/u/**',
-      },
-      {
-        protocol: "https",
-        hostname: "bif.telkomuniversity.ac.id",
+        protocol: "http",
+        hostname: "localhost",
         // port: '',
         // pathname: '/u/**',
       },
