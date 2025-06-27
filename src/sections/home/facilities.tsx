@@ -1,13 +1,14 @@
 import Icons from "@/components/Icon";
 import { Button } from "@/components/ui/button";
 import { getFacilities } from "@/lib/api";
+import { whatsappLink } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import React from "react";
 
-export default async function FacilitiesPage() {
-  const facilities = await getFacilities();
+export default async function FacilitiesPage({ settings }: { settings: Setting }) {
+  const _facilities = await getFacilities();
   // const facilities = [
   //     {
   //         id: 1,
@@ -28,7 +29,8 @@ export default async function FacilitiesPage() {
   //         description: 'Semua fasilitas berada di lantai satu untuk kenyamanan dan keamanan segala usia.',
   //     }
   // ]
-  if (!facilities) return notFound();
+  if (!_facilities) return notFound();
+  const facilities = _facilities.data;
 
   console.log("FACILTIES", facilities);
   return (
@@ -39,10 +41,10 @@ export default async function FacilitiesPage() {
         </h3>
 
         <div className="w-full flex flex-col md:flex-row justify-around gap-5 md:gap-0">
-          {facilities.data.map((e) => (
+          {facilities.map((e) => (
             <div key={e.id} className="w-full md:w-[31%] flex flex-col gap-4">
               <Image
-                src={`${process.env.BASE_URL}${e.thumbnailUrl}`}
+                src={e.thumbnailUrl}
                 alt={e.name}
                 width={200}
                 height={200}
@@ -64,10 +66,11 @@ export default async function FacilitiesPage() {
                 Lihat fasilitas lengkap
               </Button>
             </Link>
-
-            <Button className="w-full md:w-fit font-outfit font-semibold rounded-full bg-gold-primary text-heading-2 cursor-pointer py-6 md:py-4 px-3 hover:bg-gold-secondary">
-              <Icons name="whatsapp" className="w-6 h-6" /> Reservasi Sekarang
-            </Button>
+            <Link href={whatsappLink(settings.socials.whatsapp ?? '')}>
+              <Button className="w-full md:w-fit font-outfit font-semibold rounded-full bg-gold-primary text-heading-2 cursor-pointer py-6 md:py-4 px-3 hover:bg-gold-secondary">
+                <Icons name="whatsapp" className="w-6 h-6" /> Reservasi Sekarang
+              </Button>
+            </Link>
           </div>
         </div>
       </div>

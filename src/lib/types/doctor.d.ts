@@ -1,32 +1,41 @@
-type Education = {
-  year: number;
-  university: string;
+declare type Education = {
+  // year: number
+  institution: string;
+  degree: string;
 };
 
-type Experience = {
+declare type Experience = {
   year: number;
-  workplace: string;
+  position: string;
+  company: string;
 };
 
-type Doctor = {
+declare type Schedule = {
+  day: string;
+  time: string;
+};
+
+declare type Social = {
+  url: string;
+};
+
+declare type Doctor = {
   id: number;
   slug: string;
   prefix: string;
   name: string;
   postfix: string;
-  email: string;
   specialty: string;
-  bio: string | null;
+  bio: string;
   photoUrl: string;
+  treatments: string[];
   educations: Education[];
-  experience: Experience[];
-  schedules: any | null; // Bisa diubah kalau kamu tahu struktur jadwal
-  socialLinks: any | null; // Sama, tergantung isi sebetulnya
-  createdAt: string;
-  updatedAt: string;
+  experiences: Experience[];
+  schedules: Schedule[];
+  certifications: string[];
+  socials: Social[];
+  created_at: string;
+  updated_at: string;
 };
 
-type DoctorResponse = {
-  success: boolean;
-  data: Doctor[];
-};
+// declare type DoctorsResponse = BaseResponse<Doctor>;

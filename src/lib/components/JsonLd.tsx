@@ -2,7 +2,7 @@
 import Head from "next/head";
 
 type Props = {
-  data: Partial<Blog> & { author?: { name: string } };
+  data: Partial<Post> & { author?: { name: string } };
   schemaType: "WebPage" | "BlogPosting" | "Dentist" | "Person";
 };
 
@@ -32,28 +32,28 @@ const generateJsonLd = ({ data, schemaType }: Props) => {
     //   }
   }
 
-  // if (schemaType === 'BlogPosting') {
-  //     return {
-  //         '@context': 'https://schema.org',
-  //         '@type': 'BlogPosting',
-  //         headline: data.title ?? '',
-  //         description: data.excerpt ?? '',
-  //         image: data.featuredImage ?? '',
-  //         author: {
-  //             '@type': 'Person',
-  //             name: data?.author?.name ?? ''
-  //         },
-  //         datePublished: data.publishedAt ?? '',
-  //         publisher: {
-  //             '@type': 'Organization',
-  //             name: 'TumbuhSehat',
-  //             logo: {
-  //                 '@type': 'ImageObject',
-  //                 url: 'your-logo-url'
-  //             }
-  //         }
-  //     }
-  // }
+  if (schemaType === 'BlogPosting') {
+    return {
+      '@context': 'https://schema.org',
+      '@type': 'BlogPosting',
+      headline: data.title ?? '',
+      description: data.excerpt ?? '',
+      image: data.thumbnailUrl ?? '',
+      author: {
+        '@type': 'Person',
+        name: data?.author?.name ?? ''
+      },
+      datePublished: data.published_at ?? '',
+      publisher: {
+        '@type': 'Organization',
+        name: 'TumbuhSehat',
+        logo: {
+          '@type': 'ImageObject',
+          url: 'your-logo-url'
+        }
+      }
+    }
+  }
 
   if (schemaType === "Dentist") {
     return {

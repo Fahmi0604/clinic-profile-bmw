@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 };
 
 export default async function Layanan() {
-  const services = await getServices();
+  const _services = await getServices();
   // const services = [
   //     {
   //         id: 1,
@@ -77,9 +77,25 @@ export default async function Layanan() {
     return "";
   };
 
-  if (!services) return notFound();
+  if (!_services) return notFound();
+
+  const services = _services.data;
 
   console.log("SERVICES", services);
+
+  const datas = services.reduce((acc, service) => {
+    const category = service.category.toLowerCase();
+
+    if (category.includes('umum')) {
+      acc.umum = [...(acc.umum || []), service];
+    } else if (category.includes('lansia')) {
+      acc.lansia = [...(acc.lansia || []), service];
+    } else if (category.includes('anak')) {
+      acc.anak = [...(acc.anak || []), service];
+    }
+
+    return acc;
+  }, {} as Record<'umum' | 'lansia' | 'anak', typeof services>);
 
   return (
     <PageWrapper className="min-h-screen">
@@ -111,38 +127,37 @@ export default async function Layanan() {
       />
 
       <section className="flex justify-center px-4 py-8 md:py-20">
-        <div className="w-full md:max-w-5xl xl:max-w-6xl">
+        <div className="w-full space-y-16 md:max-w-5xl xl:max-w-6xl">
           {/* <h3 className="text-3xl font-gotham font-bold text-heading-1 mb-6 md:mb-10">Layanan Lengkap untuk Seluruh Keluarga</h3> */}
 
           <div className="w-full flex flex-col justify-around items-stretch gap-18">
-            {services.data.data.map((e, i) => (
-              <div
-                key={e.id}
-                className="w-full flex flex-col shadow shadow-line-color rounded-xl "
-              >
-                <div className="relative h-[400px] md:h-[500px] overflow-hidden">
-                  <Image
-                    src={`${process.env.BASE_URL}${e.thumbnailUrl}`}
-                    alt={e.category}
-                    width={200}
-                    height={200}
-                    className={cn("w-full h-full object-cover rounded-xl", "")}
-                  />
-                  <div className="w-full absolute bottom-0">
-                    <div className="z-20 w-full h-28 bg-gradient-to-t from-blue-primary to-transparent" />
-                    <div className="w-full p-6 bg-blue-primary text-white">
-                      <h3 className="text-2xl md:text-3xl font-semibold font-gotham">
-                        {e.category}
-                      </h3>
-                    </div>
-                    <div className="z-20 w-full h-4 bg-gradient-to-b from-gold-primary to-white" />
+            <div
+              className="w-full flex flex-col shadow shadow-line-color rounded-xl "
+            >
+              <div className="relative h-[400px] md:h-[500px] overflow-hidden">
+                <Image
+                  src={'assets/images/service1.webp'}
+                  alt={'service 1'}
+                  width={200}
+                  height={200}
+                  className={cn("w-full h-full object-cover rounded-xl", "object-[80%_25%]")}
+                />
+                <div className="w-full absolute bottom-0">
+                  <div className="z-20 w-full h-28 bg-gradient-to-t from-blue-primary to-transparent" />
+                  <div className="w-full p-6 bg-blue-primary text-white">
+                    <h3 className="text-2xl md:text-3xl font-semibold font-gotham">
+                      Menjaga senyuman untuk semua umur
+                    </h3>
                   </div>
+                  <div className="z-20 w-full h-4 bg-gradient-to-b from-gold-primary to-white" />
                 </div>
-                <div className="bg-white grid grid-cols-1 md:grid-cols-2 rounded-b-xl">
+              </div>
+              {datas.umum?.map((e, i) => (
+                <div key={i} className="bg-white grid grid-cols-1 md:grid-cols-2 rounded-b-xl">
                   {/* {e.name.map((f, i) => ( */}
                   <Link
                     key={e.name}
-                    href={e.slug}
+                    href={`layanan/${e.slug}`}
                     className={cn(
                       "w-full p-6 border-t border-line-color ",
                       generateBorder(i, e.name.length)
@@ -156,9 +171,101 @@ export default async function Layanan() {
                   </Link>
                   {/* ))} */}
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
+
+          <div className="w-full flex flex-col justify-around items-stretch gap-18">
+            <div
+              className="w-full flex flex-col shadow shadow-line-color rounded-xl "
+            >
+              <div className="relative h-[400px] md:h-[500px] overflow-hidden">
+                <Image
+                  src={'assets/images/service2.webp'}
+                  alt={'service 2'}
+                  width={200}
+                  height={200}
+                  className={cn("w-full h-full object-cover rounded-xl", "object-[50%_30%]")}
+                />
+                <div className="w-full absolute bottom-0">
+                  <div className="z-20 w-full h-28 bg-gradient-to-t from-blue-primary to-transparent" />
+                  <div className="w-full p-6 bg-blue-primary text-white">
+                    <h3 className="text-2xl md:text-3xl font-semibold font-gotham">
+                      Untuk lansia yang butuh perhatian ekstra
+                    </h3>
+                  </div>
+                  <div className="z-20 w-full h-4 bg-gradient-to-b from-gold-primary to-white" />
+                </div>
+              </div>
+              {datas.lansia?.map((e, i) => (
+                <div key={i} className="bg-white grid grid-cols-1 md:grid-cols-2 rounded-b-xl">
+                  {/* {e.name.map((f, i) => ( */}
+                  <Link
+                    key={e.name}
+                    href={`layanan/${e.slug}`}
+                    className={cn(
+                      "w-full p-6 border-t border-line-color ",
+                      generateBorder(i, e.name.length)
+                    )}
+                  >
+                    <div className="flex justify-between text-heading-1 font-bold text-[22px]">
+                      {e.name}
+                      <Icons name="chevron" className="text-body-1" />
+                    </div>
+                    <p className="text-body-2 text-lg">{e.description}</p>
+                  </Link>
+                  {/* ))} */}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="w-full flex flex-col justify-around items-stretch gap-18">
+            <div
+              className="w-full flex flex-col shadow shadow-line-color rounded-xl "
+            >
+              <div className="relative h-[400px] md:h-[500px] overflow-hidden">
+                <Image
+                  src={'assets/images/service3.webp'}
+                  alt={'service 3'}
+                  width={200}
+                  height={200}
+                  className={cn("w-full h-full object-cover rounded-xl", "")}
+                />
+                <div className="w-full absolute bottom-0">
+                  <div className="z-20 w-full h-28 bg-gradient-to-t from-blue-primary to-transparent" />
+                  <div className="w-full p-6 bg-blue-primary text-white">
+                    <h3 className="text-2xl md:text-3xl font-semibold font-gotham">
+                      Perawatan gigi anak, aman & nyaman
+                    </h3>
+                  </div>
+                  <div className="z-20 w-full h-4 bg-gradient-to-b from-gold-primary to-white" />
+                </div>
+              </div>
+              {datas.anak?.map((e, i) => (
+                <div key={i} className="bg-white grid grid-cols-1 md:grid-cols-2 rounded-b-xl">
+                  {/* {e.name.map((f, i) => ( */}
+                  <Link
+                    key={e.name}
+                    href={`layanan/${e.slug}`}
+                    className={cn(
+                      "w-full p-6 border-t border-line-color ",
+                      generateBorder(i, e.name.length)
+                    )}
+                  >
+                    <div className="flex justify-between text-heading-1 font-bold text-[22px]">
+                      {e.name}
+                      <Icons name="chevron" className="text-body-1" />
+                    </div>
+                    <p className="text-body-2 text-lg">{e.description}</p>
+                  </Link>
+                  {/* ))} */}
+                </div>
+              ))}
+            </div>
+          </div>
+
+
         </div>
       </section>
       {/* <Cta title={"Jadwalkan perawatan terbaik <br className='hidden md:block' /> untukmu dan keluarga"} description="Satu klik untuk pengalaman terbaik" image="/assets/images/cta-service.webp" classNameImage="object-[30%_50%] md:object-[50%_50%]" /> */}

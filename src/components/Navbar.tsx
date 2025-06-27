@@ -4,8 +4,9 @@ import Link from "next/link"
 import Icons from "./Icon"
 import NavbarSheet from "./NavbarSheet"
 import PromoBar from "./PromoBar"
+import { whatsappLink } from "@/lib/utils"
 
-export default function Navbar() {
+export default function Navbar({ settings }: { settings: Setting }) {
 
     const menuItems = [
         {
@@ -29,7 +30,7 @@ export default function Navbar() {
     return (
         <>
             <header className="sticky top-0 z-[100] w-full shadow bg-blue-primary ">
-                <PromoBar />
+                <PromoBar headline={settings.highlight.title} />
                 <div className="container mx-auto flex h-16 md:h-24 md:max-w-5xl xl:max-w-6xl items-center justify-between px-4 xl:px-0">
                     <Link href="/" className="hidden md:flex md:items-center gap-2">
                         {/* <MountainIcon className="h-6 w-6 text-white" /> */}
@@ -49,10 +50,12 @@ export default function Navbar() {
                         ))}
                     </nav>
                     {/* <div className="flex items-center gap-4"> */}
-                    <Button className="hidden md:flex text-md font-outfit text-heading-2 font-semibold rounded-full cursor-pointer bg-gold-primary py-5 mx-4 hover:bg-gold-secondary">
-                        <Icons name="whatsapp" className="h-6 w-6 text-heading-2" />
-                        Reservasi
-                    </Button>
+                    <Link href={whatsappLink(settings.contactInfo.phone ?? '')}>
+                        <Button className="hidden md:flex text-md font-outfit text-heading-2 font-semibold rounded-full cursor-pointer bg-gold-primary py-5 mx-4 hover:bg-gold-secondary">
+                            <Icons name="whatsapp" className="h-6 w-6 text-heading-2" />
+                            Reservasi
+                        </Button>
+                    </Link>
                     {/* </div> */}
                     {/* </div> */}
 

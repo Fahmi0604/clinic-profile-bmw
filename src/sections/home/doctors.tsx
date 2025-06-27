@@ -1,12 +1,13 @@
 import Icons from "@/components/Icon";
 import { Button } from "@/components/ui/button";
 import { getDoctors } from "@/lib/api";
+import { whatsappLink } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-export default async function DoctorsSection() {
-  const dokter = await getDoctors();
+export default async function DoctorsSection({ settings }: { settings: Setting }) {
+  const _dokter = await getDoctors();
   // const dokter = [
   //     {
   //         id: 1,
@@ -27,7 +28,8 @@ export default async function DoctorsSection() {
   //         image: '/assets/dokter/dokter3.jpg',
   //     },
   // ]
-  if (!dokter) return notFound();
+  if (!_dokter) return notFound();
+  const dokter = _dokter.data;
 
   console.log("DOKTER", dokter);
   return (
@@ -44,7 +46,7 @@ export default async function DoctorsSection() {
               className="relative w-full md:w-[31%] h-[400px] md:h-[50vh] xl:h-[60vh] rounded-xl overflow-hidden flex items-center justify-center shadow"
             >
               <Image
-                src={`${process.env.BASE_URL}${e.photoUrl}`}
+                src={e.photoUrl ?? ''}
                 alt={e.name}
                 width={200}
                 height={200}
@@ -71,9 +73,11 @@ export default async function DoctorsSection() {
               </Button>
             </Link>
 
-            <Button className="w-full md:w-fit font-outfit font-semibold rounded-full bg-gold-primary text-heading-2 cursor-pointer py-6 md:py-4 px-3 hover:bg-gold-secondary">
-              <Icons name="whatsapp" className="w-6 h-6" /> Buat janji dokter
-            </Button>
+            <Link href={whatsappLink(settings.socials.whatsapp ?? '')}>
+              <Button className="w-full md:w-fit font-outfit font-semibold rounded-full bg-gold-primary text-heading-2 cursor-pointer py-6 md:py-4 px-3 hover:bg-gold-secondary">
+                <Icons name="whatsapp" className="w-6 h-6" /> Buat janji dokter
+              </Button>
+            </Link>
           </div>
         </div>
       </div>

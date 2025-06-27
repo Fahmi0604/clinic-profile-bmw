@@ -1,11 +1,19 @@
 import { fetcher } from "../utils/fetcher";
 
+type BaseResponseDetail<T> = {
+  success: boolean;
+  message: string;
+  data: T;
+};
 type BaseResponse<T> = {
   success: boolean;
+  message: string;
   data: T[];
 };
-const BASE_URL = process.env.BASE_URL + "api/public";
-export async function getDoctors(): Promise<Doctor[]> {
+
+export const API_BASE_URL = "https://api.cms.ts-exp.com/api/";
+const BASE_URL = "https://api.cms.ts-exp.com/api/" + "public";
+export async function getDoctors(): Promise<BaseResponse<Doctor>> {
   const res = await fetcher<BaseResponse<Doctor>>(`${BASE_URL}/doctors`, {
     next: { revalidate: 300 },
     // headers: {
@@ -13,11 +21,13 @@ export async function getDoctors(): Promise<Doctor[]> {
     // },
   });
 
-  return res.data;
+  console.log("CEK DOKTER: ", res);
+
+  return res;
 }
 
-export async function getFacilities(): Promise<FacilityResponse> {
-  const res = await fetcher<FacilityResponse>(`${BASE_URL}/facilities`, {
+export async function getFacilities(): Promise<BaseResponse<Facility>> {
+  const res = await fetcher<BaseResponse<Facility>>(`${BASE_URL}/facilities`, {
     next: { revalidate: 300 },
     // headers: {
     //   Authorization: `Bearer eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIn0..Goq3DwXNNOPqtez1.drTTp0wfOa2qI12MNrTRUXFhQhFHEKV2KaplMOj1cGyC5oNnpYXs68ORc5_VEQSOVNNBydHrpRYvuTExqIV4zD2D_7PJTxcAjGkP9EpdN_jpBlx9vn4nVH1f-SivP65Ypv0xYeI-RLgh5APzp2RGxsoLUpvUD_p_Au2eHmIKTGeu2JC1PZ-RCfYJainNWO-VmDGni9MMJE9g4ut5SjJBhqRUwxzyqY0h83hNlsHfWrEw5ECk.hB7Eza35UwgtbLaRm0LI1g`,
@@ -27,8 +37,8 @@ export async function getFacilities(): Promise<FacilityResponse> {
   return res;
 }
 
-export async function getServices(): Promise<ServiceResponse> {
-  const res = await fetcher<ServiceResponse>(`${BASE_URL}/services`, {
+export async function getServices(): Promise<BaseResponse<Service>> {
+  const res = await fetcher<BaseResponse<Service>>(`${BASE_URL}/services`, {
     next: { revalidate: 300 },
     // headers: {
     //   Authorization: `Bearer eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIn0..Goq3DwXNNOPqtez1.drTTp0wfOa2qI12MNrTRUXFhQhFHEKV2KaplMOj1cGyC5oNnpYXs68ORc5_VEQSOVNNBydHrpRYvuTExqIV4zD2D_7PJTxcAjGkP9EpdN_jpBlx9vn4nVH1f-SivP65Ypv0xYeI-RLgh5APzp2RGxsoLUpvUD_p_Au2eHmIKTGeu2JC1PZ-RCfYJainNWO-VmDGni9MMJE9g4ut5SjJBhqRUwxzyqY0h83hNlsHfWrEw5ECk.hB7Eza35UwgtbLaRm0LI1g`,
@@ -38,13 +48,59 @@ export async function getServices(): Promise<ServiceResponse> {
   return res;
 }
 
-export async function getBlogs(): Promise<Blog[]> {
-  const res = await fetcher<BaseResponse<Blog>>(`${BASE_URL}/posts`, {
+export async function getServiceBySlug(
+  slug: string
+): Promise<BaseResponseDetail<Service>> {
+  const res = await fetcher<BaseResponseDetail<Service>>(
+    `${BASE_URL}/services/${slug}`,
+    {
+      next: { revalidate: 300 },
+      // headers: {
+      //   Authorization: `Bearer eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIn0..Goq3DwXNNOPqtez1.drTTp0wfOa2qI12MNrTRUXFhQhFHEKV2KaplMOj1cGyC5oNnpYXs68ORc5_VEQSOVNNBydHrpRYvuTExqIV4zD2D_7PJTxcAjGkP9EpdN_jpBlx9vn4nVH1f-SivP65Ypv0xYeI-RLgh5APzp2RGxsoLUpvUD_p_Au2eHmIKTGeu2JC1PZ-RCfYJainNWO-VmDGni9MMJE9g4ut5SjJBhqRUwxzyqY0h83hNlsHfWrEw5ECk.hB7Eza35UwgtbLaRm0LI1g`,
+      // },
+    }
+  );
+
+  return res;
+}
+
+export async function getBlogs(): Promise<BaseResponse<Post>> {
+  const res = await fetcher<BaseResponse<Post>>(`${BASE_URL}/posts`, {
     next: { revalidate: 300 },
     // headers: {
     //   Authorization: `Bearer eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIn0..Goq3DwXNNOPqtez1.drTTp0wfOa2qI12MNrTRUXFhQhFHEKV2KaplMOj1cGyC5oNnpYXs68ORc5_VEQSOVNNBydHrpRYvuTExqIV4zD2D_7PJTxcAjGkP9EpdN_jpBlx9vn4nVH1f-SivP65Ypv0xYeI-RLgh5APzp2RGxsoLUpvUD_p_Au2eHmIKTGeu2JC1PZ-RCfYJainNWO-VmDGni9MMJE9g4ut5SjJBhqRUwxzyqY0h83hNlsHfWrEw5ECk.hB7Eza35UwgtbLaRm0LI1g`,
     // },
   });
 
-  return res.data;
+  return res;
+}
+
+export async function getSettings(): Promise<BaseResponseDetail<Setting>> {
+  const res = await fetcher<BaseResponseDetail<Setting>>(
+    `${BASE_URL}/settings`,
+    {
+      next: { revalidate: 300 },
+      // headers: {
+      //   Authorization: `Bearer eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIn0..Goq3DwXNNOPqtez1.drTTp0wfOa2qI12MNrTRUXFhQhFHEKV2KaplMOj1cGyC5oNnpYXs68ORc5_VEQSOVNNBydHrpRYvuTExqIV4zD2D_7PJTxcAjGkP9EpdN_jpBlx9vn4nVH1f-SivP65Ypv0xYeI-RLgh5APzp2RGxsoLUpvUD_p_Au2eHmIKTGeu2JC1PZ-RCfYJainNWO-VmDGni9MMJE9g4ut5SjJBhqRUwxzyqY0h83hNlsHfWrEw5ECk.hB7Eza35UwgtbLaRm0LI1g`,
+      // },
+    }
+  );
+
+  return res;
+}
+
+export async function getBlogsBySlug(
+  slug: string
+): Promise<BaseResponseDetail<Post>> {
+  const res = await fetcher<BaseResponseDetail<Post>>(
+    `${BASE_URL}/posts/${slug}`,
+    {
+      next: { revalidate: 300 },
+      // headers: {
+      //   Authorization: `Bearer eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIn0..Goq3DwXNNOPqtez1.drTTp0wfOa2qI12MNrTRUXFhQhFHEKV2KaplMOj1cGyC5oNnpYXs68ORc5_VEQSOVNNBydHrpRYvuTExqIV4zD2D_7PJTxcAjGkP9EpdN_jpBlx9vn4nVH1f-SivP65Ypv0xYeI-RLgh5APzp2RGxsoLUpvUD_p_Au2eHmIKTGeu2JC1PZ-RCfYJainNWO-VmDGni9MMJE9g4ut5SjJBhqRUwxzyqY0h83hNlsHfWrEw5ECk.hB7Eza35UwgtbLaRm0LI1g`,
+      // },
+    }
+  );
+
+  return res;
 }

@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 };
 
 export default async function Fasilitas() {
-  const facilities = await getFacilities();
+  const _facilities = await getFacilities();
   // const facilities = [
   //     {
   //         id: 1,
@@ -34,7 +34,8 @@ export default async function Fasilitas() {
   //     }
   // ]
 
-  if (!facilities) return notFound();
+  if (!_facilities) return notFound();
+  const facilities = _facilities.data;
 
   console.log("FACILTIES", facilities);
 
@@ -44,11 +45,11 @@ export default async function Fasilitas() {
       title: "Kenyamanan Anda yang Utama",
       facilities,
     },
-    {
-      id: 2,
-      title: "Teknologi Modern, Hasil Presisi",
-      facilities,
-    },
+    // {
+    //   id: 2,
+    //   title: "Teknologi Modern, Hasil Presisi",
+    //   facilities,
+    // },
   ];
 
   return (
@@ -67,14 +68,14 @@ export default async function Fasilitas() {
               <h3 className="text-3xl font-gotham font-bold text-heading-1 mb-6 md:mb-10">
                 {e.title}
               </h3>
-              <div className="w-full flex flex-col md:flex-row justify-around items-center gap-5 md:gap-0">
-                {e.facilities.data.map((e) => (
+              <div className="w-full flex flex-col md:flex-row justify-around items-top gap-5 md:gap-0">
+                {e.facilities?.map((e) => (
                   <div
                     key={e.id}
                     className="w-full md:w-[31%] flex flex-col gap-4"
                   >
                     <Image
-                      src={`${process.env.BASE_URL}${e.thumbnailUrl}`}
+                      src={e.thumbnailUrl ?? ''}
                       alt={e.name}
                       width={200}
                       height={200}

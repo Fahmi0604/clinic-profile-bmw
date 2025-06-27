@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 };
 
 export default async function Dokter() {
-  const dokter = await getDoctors();
+  const _dokter = await getDoctors();
 
   // const dokter = [
   //     {
@@ -113,7 +113,9 @@ export default async function Dokter() {
   //     },
   // ]
 
-  if (!dokter) return notFound();
+  if (!_dokter) return notFound();
+
+  const dokter = _dokter.data;
 
   console.log("DOKTER", dokter);
 
@@ -132,7 +134,7 @@ export default async function Dokter() {
             <div key={e.id} className="grid gap-4 md:grid-cols-2">
               <div className="md:px-8">
                 <Image
-                  src={`${process.env.BASE_URL}${e.photoUrl}`}
+                  src={e.photoUrl ?? ''}
                   alt={e.name}
                   width={200}
                   height={200}
@@ -149,25 +151,25 @@ export default async function Dokter() {
                 <div className="w-full h-[2px] bg-line-color my-2" />
                 <p className=" font-bold text-body-1">Jadwal Praktik:</p>
                 <ul className="">
-                  {e.schedules?.map((schedule: any, idx: number) => (
+                  {e.schedules?.map((schedule, idx: number) => (
                     <li
                       key={idx}
-                      className="grid grid-cols-[50%_40%] md:grid-cols-[25%_75%] text-body-1"
+                      className="grid grid-cols-[50%_40%] md:grid-cols-[25%_75%] md:gap-2 text-body-1"
                     >
-                      <span className="w-fit">{schedule.hari}</span>
-                      <span className="w-fit">{schedule.jam}</span>
+                      <span className="w-fit">{schedule.day}</span>
+                      <span className="w-fit">{schedule.time}</span>
                     </li>
                   ))}
                 </ul>
                 <div className="w-full h-[2px] bg-line-color my-2" />
                 <p className="font-bold text-body-1">Spesialisasi Treatment:</p>
                 <ul className="flex flex-wrap gap-2">
-                  {e.experience.map((exp, idx: number) => (
+                  {e.treatments.map((exp, idx: number) => (
                     <li
                       key={idx}
                       className="py-1 px-3 rounded-full font-semibold bg-blue-secondary text-white"
                     >
-                      {exp.workplace}
+                      {exp}
                     </li>
                   ))}
                 </ul>
@@ -176,7 +178,7 @@ export default async function Dokter() {
                 <ul className="list-disc pl-5">
                   {e.educations.map((a, i) => (
                     <li key={i} className="text-body-1">
-                      {a.year}, {a.university}
+                      {a.degree}, {a.institution}
                     </li>
                   ))}
                 </ul>

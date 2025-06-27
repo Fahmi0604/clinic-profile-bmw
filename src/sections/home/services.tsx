@@ -1,13 +1,13 @@
 import Icons from "@/components/Icon";
 import { Button } from "@/components/ui/button";
 import { getServices } from "@/lib/api";
-import { cn } from "@/lib/utils";
+import { cn, whatsappLink } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-async function ServicesPage() {
-  const services = await getServices();
+async function ServicesPage({ settings }: { settings: Setting }) {
+  const _services = await getServices();
   // const services = [
   //     {
   //         id: 1,
@@ -55,7 +55,23 @@ async function ServicesPage() {
   //         ]
   //     },
   // ]
-  if (!services) return notFound();
+  if (!_services) return notFound();
+  const services = _services.data;
+
+  const datas = services.reduce((acc, service) => {
+    const category = service.category.toLowerCase();
+
+    if (category.includes('umum')) {
+      acc.umum = [...(acc.umum || []), service];
+    } else if (category.includes('lansia')) {
+      acc.lansia = [...(acc.lansia || []), service];
+    } else if (category.includes('anak')) {
+      acc.anak = [...(acc.anak || []), service];
+    }
+
+    return acc;
+  }, {} as Record<'umum' | 'lansia' | 'anak', typeof services>);
+
 
   console.log("SERVICES", services);
   return (
@@ -66,34 +82,30 @@ async function ServicesPage() {
         </h3>
 
         <div className="w-full flex flex-col md:flex-row justify-around items-stretch gap-5 md:gap-0">
-          {services.data.data.map((e, i) => (
-            <div
-              key={e.id}
-              className="w-full flex flex-col md:w-[31%] shadow shadow-line-color rounded-xl "
-            >
-              <div className="relative h-[450px] overflow-hidden">
-                <Image
-                  src={`${process.env.BASE_URL}${e.thumbnailUrl}`}
-                  alt={e.name}
-                  width={200}
-                  height={200}
-                  className="w-full object-cover object-center rounded-xl"
-                />
-                <div className="w-full absolute bottom-0">
-                  <div className="z-20 w-full h-28 bg-gradient-to-t from-blue-primary to-transparent" />
-                  <div className="w-full p-6 bg-blue-primary text-white">
-                    <h4 className="text-[22px] font-semibold font-gotham">
-                      {e.category}
-                    </h4>
-                  </div>
-                  <div className="z-20 w-full h-4 bg-gradient-to-b from-gold-primary to-white" />
+          <div className="w-full flex flex-col md:w-[31%] shadow shadow-line-color rounded-xl ">
+            <div className="relative h-[450px] overflow-hidden">
+              <Image
+                src={'assets/images/service1.webp'}
+                alt={'thumbnail'}
+                width={200}
+                height={200}
+                className="w-full object-cover object-center rounded-xl"
+              />
+              <div className="w-full absolute bottom-0">
+                <div className="z-20 w-full h-28 bg-gradient-to-t from-blue-primary to-transparent" />
+                <div className="w-full p-6 bg-blue-primary text-white">
+                  <h4 className="text-[22px] font-semibold font-gotham">
+                    Menjaga senyuman untuk semua umur
+                  </h4>
                 </div>
+                <div className="z-20 w-full h-4 bg-gradient-to-b from-gold-primary to-white" />
               </div>
-              <div className="bg-white flex flex-col">
-                {/* {e.services.map((f, i) => ( */}
+            </div>
+            <div className="bg-white flex flex-col">
+              {datas.umum?.map((e, i) => (
                 <Link
-                  key={e.name}
-                  href={e.slug}
+                  key={e.id}
+                  href={`layanan/${e.slug}`}
                   className={cn(
                     "w-full text-body-1 text-lg p-4 border-b border-line-color flex justify-between",
                     i === e?.name.length - 1 && "rounded-xl"
@@ -102,15 +114,87 @@ async function ServicesPage() {
                   {e.name}
                   <Icons name="chevron" className="text-body-1" />
                 </Link>
-                {/* ))} */}
+              ))}
+            </div>
+          </div>
+          <div className="w-full flex flex-col md:w-[31%] shadow shadow-line-color rounded-xl ">
+            <div className="relative h-[450px] overflow-hidden">
+              <Image
+                src={'assets/images/service2.webp'}
+                alt={'thumbnail 2'}
+                width={200}
+                height={200}
+                className="w-full object-cover object-center rounded-xl"
+              />
+              <div className="w-full absolute bottom-0">
+                <div className="z-20 w-full h-28 bg-gradient-to-t from-blue-primary to-transparent" />
+                <div className="w-full p-6 bg-blue-primary text-white">
+                  <h4 className="text-[22px] font-semibold font-gotham">
+                    Untuk lansia yang butuh perhatian ekstra
+                  </h4>
+                </div>
+                <div className="z-20 w-full h-4 bg-gradient-to-b from-gold-primary to-white" />
               </div>
             </div>
-          ))}
+            <div className="bg-white flex flex-col">
+              {datas.lansia?.map((e, i) => (
+                <Link
+                  key={e.id}
+                  href={`layanan/${e.slug}`}
+                  className={cn(
+                    "w-full text-body-1 text-lg p-4 border-b border-line-color flex justify-between",
+                    i === e?.name.length - 1 && "rounded-xl"
+                  )}
+                >
+                  {e.name}
+                  <Icons name="chevron" className="text-body-1" />
+                </Link>
+              ))}
+            </div>
+          </div>
+          <div className="w-full flex flex-col md:w-[31%] shadow shadow-line-color rounded-xl ">
+            <div className="relative h-[450px] overflow-hidden">
+              <Image
+                src={'assets/images/service3.webp'}
+                alt={'thumbnail 3'}
+                width={200}
+                height={200}
+                className="w-full object-cover object-center rounded-xl"
+              />
+              <div className="w-full absolute bottom-0">
+                <div className="z-20 w-full h-28 bg-gradient-to-t from-blue-primary to-transparent" />
+                <div className="w-full p-6 bg-blue-primary text-white">
+                  <h4 className="text-[22px] font-semibold font-gotham">
+                    Perawatan gigi anak, aman & nyaman
+                  </h4>
+                </div>
+                <div className="z-20 w-full h-4 bg-gradient-to-b from-gold-primary to-white" />
+              </div>
+            </div>
+            <div className="bg-white flex flex-col">
+              {datas.anak?.map((e, i) => (
+                <Link
+                  key={e.id}
+                  href={`layanan/${e.slug}`}
+                  className={cn(
+                    "w-full text-body-1 text-lg p-4 border-b border-line-color flex justify-between",
+                    i === e?.name.length - 1 && "rounded-xl"
+                  )}
+                >
+                  {e.name}
+                  <Icons name="chevron" className="text-body-1" />
+                </Link>
+              ))}
+            </div>
+          </div>
         </div>
+
         <div className="w-full flex justify-center mt-8">
-          <Button className="w-full md:w-fit font-outfit font-semibold rounded-full bg-gold-primary text-heading-2 cursor-pointer py-6 md:py-4 px-3 hover:bg-gold-secondary">
-            <Icons name="whatsapp" className="w-6 h-6" /> Konsultasi Sekarang
-          </Button>
+          <Link href={whatsappLink(settings.socials.whatsapp ?? '')}>
+            <Button className="w-full md:w-fit font-outfit font-semibold rounded-full bg-gold-primary text-heading-2 cursor-pointer py-6 md:py-4 px-3 hover:bg-gold-secondary">
+              <Icons name="whatsapp" className="w-6 h-6" /> Konsultasi Sekarang
+            </Button>
+          </Link>
         </div>
       </div>
     </section>

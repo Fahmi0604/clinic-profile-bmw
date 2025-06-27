@@ -1,9 +1,11 @@
 import { BeforeAfter } from "@/components"
 import Icons from "@/components/Icon"
 import { Button } from "@/components/ui/button"
+import { whatsappLink } from "@/lib/utils"
+import Link from "next/link"
 
 
-function ServiceResultPage() {
+function ServiceResultPage({ settings }: { settings: Setting }) {
 
     const services = [
         {
@@ -60,9 +62,11 @@ function ServiceResultPage() {
                     ))}
                 </div>
                 <div className='w-full flex justify-center mt-8'>
-                    <Button className="w-full md:w-fit font-outfit font-semibold rounded-full bg-gold-primary text-heading-2 cursor-pointer py-6 md:py-4 px-3 hover:bg-gold-secondary">
-                        <Icons name="whatsapp" className="w-6 h-6" /> Reservasi Sekarang
-                    </Button>
+                    <Link href={whatsappLink(settings.socials.whatsapp ?? '')}>
+                        <Button className="w-full md:w-fit font-outfit font-semibold rounded-full bg-gold-primary text-heading-2 cursor-pointer py-6 md:py-4 px-3 hover:bg-gold-secondary">
+                            <Icons name="whatsapp" className="w-6 h-6" /> Reservasi Sekarang
+                        </Button>
+                    </Link>
                 </div>
             </div>
         </section>

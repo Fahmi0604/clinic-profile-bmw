@@ -2,6 +2,8 @@ import { FadeInFadeOut, PageWrapper, SlideIn } from "@/components";
 import Cta from "@/components/Cta";
 import Icons from "@/components/Icon";
 import { Button } from "@/components/ui/button";
+import { getSettings } from "@/lib/api";
+import { whatsappLink } from "@/lib/utils";
 import DokterSection from "@/sections/home/doctors";
 import FacilitiesPage from "@/sections/home/facilities";
 import FaqPage from "@/sections/home/faq";
@@ -17,7 +19,9 @@ export const metadata: Metadata = {
   description: "Home",
 };
 
-export default function Home() {
+export default async function Home() {
+  const settings = await getSettings()
+
   return (
     <PageWrapper className="min-h-screen">
       <section className="flex flex-col md:flex-row-reverse">
@@ -52,13 +56,17 @@ export default function Home() {
             </SlideIn>
 
             <div className="flex flex-col md:flex-row md:gap-4 mb-8">
-              <Button className="w-full md:w-fit font-outfit font-semibold rounded-full bg-gold-primary text-heading-2 cursor-pointer py-6 md:py-4 px-3 mb-4 hover:bg-gold-secondary">
-                <Icons name="whatsapp" className="w-6 h-6" /> Reservasi Via WhatsApp
-              </Button>
+              <Link href={whatsappLink(settings.data.socials.whatsapp ?? '')}>
+                <Button className="w-full md:w-fit font-outfit font-semibold rounded-full bg-gold-primary text-heading-2 cursor-pointer py-6 md:py-4 px-3 mb-4 hover:bg-gold-secondary">
+                  <Icons name="whatsapp" className="w-6 h-6" /> Reservasi Via WhatsApp
+                </Button>
+              </Link>
 
-              <Button className="w-full md:w-fit font-outfit font-semibold rounded-full bg-white text-heading-2 cursor-pointer py-6 md:py-4 px-3 hover:bg-gray-400">
-                <Icons name="phone" className="w-6 h-6" /> <span className="md:mr-2">Hubungi Kami</span>
-              </Button>
+              <Link href={`tel:${settings.data.contactInfo.phone ?? ''}`}>
+                <Button className="w-full md:w-fit font-outfit font-semibold rounded-full bg-white text-heading-2 cursor-pointer py-6 md:py-4 px-3 hover:bg-gray-400">
+                  <Icons name="phone" className="w-6 h-6" /> <span className="md:mr-2">Hubungi Kami</span>
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
@@ -67,8 +75,8 @@ export default function Home() {
         <div className="w-full md:max-w-5xl xl:max-w-6xl md:flex md:justify-between">
           <h3 className="text-2xl font-gotham font-bold text-heading-2 mb-6">Klinik Gigi Terpercaya di Medan</h3>
           <div className="flex flex-col md:items-end">
-            <p className="font-semibold text-body-1 mb-2">📍 <br className="md:hidden" />Jl. Burjamhal No. B4, Petisah Tengah, Kec. Medan Petisah </p>
-            <Link href="/" className="underline text-body-1 cursor-pointer">Lihat di Google Maps</Link>
+            <p className="font-semibold text-body-1 mb-2">📍 <br className="md:hidden" />{settings.data.contactInfo.address ?? "Jl. Burjamhal No. B4, Petisah Tengah, Kec. Medan Petisah "}</p>
+            <Link href={settings.data.webUrl ?? ''} className="underline text-body-1 cursor-pointer">Lihat di Google Maps</Link>
           </div>
         </div>
       </section>
@@ -113,10 +121,10 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <DokterSection />
-      <ServicesPage />
-      <ServiceResultPage />
-      <FacilitiesPage />
+      <DokterSection settings={settings.data} />
+      <ServicesPage settings={settings.data} />
+      <ServiceResultPage settings={settings.data} />
+      <FacilitiesPage settings={settings.data} />
       <TestimonyPage />
       <FaqPage />
       <Cta title="Yuk Mulai Perawatanmu Hari Ini" description="Satu klik menuju senyum sehat" image="/assets/images/cta-home.webp" classNameImage="object-[50%_30%]" />

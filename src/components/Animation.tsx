@@ -3,7 +3,7 @@
 import React from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { usePathname } from 'next/navigation';
-import Footer from './Footer';
+// import Footer from './Footer';
 
 type FadeInFadeOutTextProps = {
     children: React.ReactNode;
@@ -125,7 +125,7 @@ const PageWrapper = ({ children, className = '' }: { children: React.ReactNode, 
             >
                 {children}
             </motion.main>
-            <Footer />
+            {/* <Footer /> */}
         </AnimatePresence>
     );
 };

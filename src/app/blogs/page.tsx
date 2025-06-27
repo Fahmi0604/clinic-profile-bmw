@@ -7,6 +7,8 @@ import { id } from 'date-fns/locale';
 import Icons from '@/components/Icon';
 import { PageWrapper } from '@/components';
 import { Metadata } from 'next';
+import { getBlogs } from '@/lib/api';
+import { notFound } from 'next/navigation';
 
 export const revalidate = 60; // ISR: update list every 60s
 
@@ -28,40 +30,45 @@ export const metadata: Metadata = {
 };
 
 export default async function BlogListPage() {
-    const blogs = [
-        {
-            id: 1,
-            title: 'Tips Menjaga Kesehatan Gigi Anak Sejak Dini',
-            slug: 'blog-1',
-            excerpt: 'Menjaga kesehatan gigi anak sejak dini sangat penting untuk perkembangan gigi permanen yang sehat',
-            featuredImage: '/assets/images/banner-dokter.webp',
-            publishedDate: new Date(),
-        },
-        {
-            id: 2,
-            title: 'Blog 2',
-            slug: 'blog-2',
-            excerpt: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-            featuredImage: '/assets/images/banner-service.webp',
-            publishedDate: new Date(),
-        },
-        {
-            id: 3,
-            title: 'Blog 3',
-            slug: 'blog-3',
-            excerpt: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-            featuredImage: '/assets/images/banner-facilities.webp',
-            publishedDate: new Date(),
-        },
-        {
-            id: 4,
-            title: 'Blog 4',
-            slug: 'blog-4',
-            excerpt: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-            featuredImage: '/assets/images/banner.webp',
-            publishedDate: new Date(),
-        },
-    ]
+    const _blogs = await getBlogs()
+    // const blogs = [
+    //     {
+    //         id: 1,
+    //         title: 'Tips Menjaga Kesehatan Gigi Anak Sejak Dini',
+    //         slug: 'blog-1',
+    //         excerpt: 'Menjaga kesehatan gigi anak sejak dini sangat penting untuk perkembangan gigi permanen yang sehat',
+    //         featuredImage: '/assets/images/banner-dokter.webp',
+    //         publishedDate: new Date(),
+    //     },
+    //     {
+    //         id: 2,
+    //         title: 'Blog 2',
+    //         slug: 'blog-2',
+    //         excerpt: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    //         featuredImage: '/assets/images/banner-service.webp',
+    //         publishedDate: new Date(),
+    //     },
+    //     {
+    //         id: 3,
+    //         title: 'Blog 3',
+    //         slug: 'blog-3',
+    //         excerpt: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    //         featuredImage: '/assets/images/banner-facilities.webp',
+    //         publishedDate: new Date(),
+    //     },
+    //     {
+    //         id: 4,
+    //         title: 'Blog 4',
+    //         slug: 'blog-4',
+    //         excerpt: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    //         featuredImage: '/assets/images/banner.webp',
+    //         publishedDate: new Date(),
+    //     },
+    // ]
+
+    if (!_blogs) return notFound();
+
+    const blogs = _blogs.data;
 
     return (
         // <main className='p-4'>
@@ -93,7 +100,7 @@ export default async function BlogListPage() {
                         {blogs.map((e) => (
                             <Link key={e.id} href={`/blogs/${e.slug}`} className='w-full md:w-[31%] flex flex-col gap-4 border border-line-color rounded-xl'>
                                 <Image
-                                    src={e.featuredImage}
+                                    src={e.thumbnailUrl}
                                     alt={e.title}
                                     width={200}
                                     height={200}
@@ -106,7 +113,7 @@ export default async function BlogListPage() {
                                     </div>
 
                                     <div className='flex justify-between items-center mt-4'>
-                                        <span className='text-caption-2'>{format(e.publishedDate, 'dd MMMM yyyy', { locale: id })}</span>
+                                        <span className='text-caption-2'>{format(e.published_at ?? '', 'dd MMMM yyyy', { locale: id })}</span>
                                         <p className='text-body-2 flex items-center gap-2 underline'>Baca Selengkapnya <Icons name='arrow-forward' className='w-6 h-6 text-black'></Icons></p>
                                     </div>
                                 </div>
