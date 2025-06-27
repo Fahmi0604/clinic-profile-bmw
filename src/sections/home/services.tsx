@@ -77,24 +77,24 @@ async function ServicesPage({ settings }: { settings: Setting }) {
   return (
     <section className="px-4 flex justify-center py-8 md:py-20">
       <div className="md:max-w-5xl xl:max-w-6xl">
-        <h3 className="text-2xl md:text-3xl font-gotham font-bold text-heading-1 mb-6 md:mb-10">
+        <h3 className="text-2xl md:text-3xl font-gotham font-medium text-heading-1 mb-6 md:mb-10">
           Layanan Lengkap untuk Seluruh Keluarga
         </h3>
 
         <div className="w-full flex flex-col md:flex-row justify-around items-stretch gap-5 md:gap-0">
           <div className="w-full flex flex-col md:w-[31%] shadow shadow-line-color rounded-xl ">
-            <div className="relative h-[450px] overflow-hidden">
+            <div className="relative h-[400px] overflow-hidden">
               <Image
                 src={'assets/images/service1.webp'}
                 alt={'thumbnail'}
                 width={200}
                 height={200}
-                className="w-full object-cover object-center rounded-xl"
+                className="w-full object-cover object-[90%_10%] rounded-xl"
               />
               <div className="w-full absolute bottom-0">
                 <div className="z-20 w-full h-28 bg-gradient-to-t from-blue-primary to-transparent" />
                 <div className="w-full p-6 bg-blue-primary text-white">
-                  <h4 className="text-[22px] font-semibold font-gotham">
+                  <h4 className="text-[22px] font-medium font-gotham">
                     Menjaga senyuman untuk semua umur
                   </h4>
                 </div>
@@ -118,7 +118,7 @@ async function ServicesPage({ settings }: { settings: Setting }) {
             </div>
           </div>
           <div className="w-full flex flex-col md:w-[31%] shadow shadow-line-color rounded-xl ">
-            <div className="relative h-[450px] overflow-hidden">
+            <div className="relative h-[400px] overflow-hidden">
               <Image
                 src={'assets/images/service2.webp'}
                 alt={'thumbnail 2'}
@@ -129,7 +129,7 @@ async function ServicesPage({ settings }: { settings: Setting }) {
               <div className="w-full absolute bottom-0">
                 <div className="z-20 w-full h-28 bg-gradient-to-t from-blue-primary to-transparent" />
                 <div className="w-full p-6 bg-blue-primary text-white">
-                  <h4 className="text-[22px] font-semibold font-gotham">
+                  <h4 className="text-[22px] font-medium font-gotham">
                     Untuk lansia yang butuh perhatian ekstra
                   </h4>
                 </div>
@@ -153,7 +153,7 @@ async function ServicesPage({ settings }: { settings: Setting }) {
             </div>
           </div>
           <div className="w-full flex flex-col md:w-[31%] shadow shadow-line-color rounded-xl ">
-            <div className="relative h-[450px] overflow-hidden">
+            <div className="relative h-[400px] overflow-hidden">
               <Image
                 src={'assets/images/service3.webp'}
                 alt={'thumbnail 3'}
@@ -164,7 +164,7 @@ async function ServicesPage({ settings }: { settings: Setting }) {
               <div className="w-full absolute bottom-0">
                 <div className="z-20 w-full h-28 bg-gradient-to-t from-blue-primary to-transparent" />
                 <div className="w-full p-6 bg-blue-primary text-white">
-                  <h4 className="text-[22px] font-semibold font-gotham">
+                  <h4 className="text-[22px] font-medium font-gotham">
                     Perawatan gigi anak, aman & nyaman
                   </h4>
                 </div>
@@ -191,7 +191,7 @@ async function ServicesPage({ settings }: { settings: Setting }) {
 
         <div className="w-full flex justify-center mt-8">
           <Link href={whatsappLink(settings.socials.whatsapp ?? '')}>
-            <Button className="w-full md:w-fit font-outfit font-semibold rounded-full bg-gold-primary text-heading-2 cursor-pointer py-6 md:py-4 px-3 hover:bg-gold-secondary">
+            <Button className="w-full md:w-fit font-outfit font-medium rounded-full bg-gold-primary text-heading-2 cursor-pointer py-6 md:py-4 px-3 hover:bg-gold-secondary">
               <Icons name="whatsapp" className="w-6 h-6" /> Konsultasi Sekarang
             </Button>
           </Link>
