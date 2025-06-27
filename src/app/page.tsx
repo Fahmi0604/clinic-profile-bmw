@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { FadeInFadeOut, PageWrapper, SlideIn } from "@/components";
 import Cta from "@/components/Cta";
 import Icons from "@/components/Icon";
@@ -31,7 +33,7 @@ export default async function Home() {
             alt="logo"
             width={100}
             height={100}
-            className="w-full z-0 block"
+            className="w-full object-cover md:h-[80vh] z-0 block"
           />
           <Image
             src="/assets/icons/circle.svg"
@@ -47,8 +49,8 @@ export default async function Home() {
           <div className="md:w-fit">
             <FadeInFadeOut delay={0.3} duration={1.2}>
               <>
-                <h1 className="hidden md:block md:text-4xl xl:text-5xl font-bold font-gotham mb-4">Healing Your Tooth Pain, <br /> Perfecting Your Smile </h1>
-                <h1 className="md:hidden text-4xl md:text-5xl font-bold font-gotham mb-4">Healing Your Tooth <br /> Pain, Perfecting <br /> Your Smile </h1>
+                <h1 className="hidden md:block md:text-4xl xl:text-5xl font-medium font-gotham mb-4">Healing Your Tooth Pain, <br /> Perfecting Your Smile </h1>
+                <h1 className="md:hidden text-4xl md:text-5xl font-medium font-gotham mb-4">Healing Your Tooth <br /> Pain, Perfecting <br /> Your Smile </h1>
               </>
             </FadeInFadeOut>
             <SlideIn from="top" delay={0.5} duration={1.3}>
@@ -73,7 +75,7 @@ export default async function Home() {
       </section>
       <section className="md:flex md:justify-center bg-gray-primary px-4 py-8 md:py-12">
         <div className="w-full md:max-w-5xl xl:max-w-6xl md:flex md:justify-between">
-          <h3 className="text-2xl font-gotham font-bold text-heading-2 mb-6">Klinik Gigi Terpercaya di Medan</h3>
+          <h3 className="text-2xl font-gotham font-medium text-heading-2 mb-6">Klinik Gigi Terpercaya di Medan</h3>
           <div className="flex flex-col md:items-end">
             <p className="font-semibold text-body-1 mb-2">📍 <br className="md:hidden" />{settings.data.contactInfo.address ?? "Jl. Burjamhal No. B4, Petisah Tengah, Kec. Medan Petisah "}</p>
             <Link href={settings.data.webUrl ?? ''} className="underline text-body-1 cursor-pointer">Lihat di Google Maps</Link>
