@@ -46,7 +46,7 @@ export default function TestimonyPage() {
     return (
         <section className='px-4 flex justify-center py-8 md:py-20'>
             <div className='md:max-w-5xl xl:max-w-6xl'>
-                <h3 className="text-2xl md:text-3xl font-gotham font-bold text-heading-1 mb-2 md:mb-4 ">Dipercaya oleh Ribuan Pasien di Medan</h3>
+                <h3 className="text-2xl md:text-3xl font-gotham font-medium text-heading-1 mb-2 md:mb-4 ">Dipercaya oleh Ribuan Pasien di Medan</h3>
                 <p className='text-lg text-body-1 mb-6 md:mb-10'>Apa kata mereka...</p>
 
                 <div className='w-full flex flex-wrap flex-col md:flex-row justify-center gap-6 md:gap-8 xl:gap-10'>
@@ -68,7 +68,7 @@ export default function TestimonyPage() {
                                     height={200}
                                     className='w-8 h-8 object-cover rounded-xl'
                                 />
-                                <h4 className='text-lg font-bold '>{e.name}</h4>
+                                <h4 className='text-lg font-medium '>{e.name}</h4>
                             </div>
                         </div>
                     ))}

@@ -46,7 +46,7 @@ function ServiceResultPage({ settings }: { settings: Setting }) {
     return (
         <section className="px-4 flex justify-center py-8 md:py-20">
             <div className='md:max-w-5xl xl:max-w-6xl'>
-                <h3 className="text-2xl md:text-3xl font-gotham font-bold text-heading-1 mb-6 md:mb-10">Transformasi Senyuman dengan Perawatan Kami</h3>
+                <h3 className="text-2xl md:text-3xl font-gotham font-medium text-heading-1 mb-6 md:mb-10">Transformasi Senyuman dengan Perawatan Kami</h3>
 
                 <div className='w-full flex flex-col gap-10 md:gap-5'>
                     {services.map((service) => (
@@ -55,7 +55,7 @@ function ServiceResultPage({ settings }: { settings: Setting }) {
                                 <BeforeAfter label={{ before: service.labelBefore, after: service.labelAfter }} image={{ before: { src: service.imageBefore }, after: { src: service.imageAfter } }} className={{ after: service.className, before: service.className }} />
                             </div>
                             <div className="md:w-[30%]">
-                                <h4 className='text-[22px] font-semibold font-gotham'>{service.title}</h4>
+                                <h4 className='text-[22px] font-medium font-gotham'>{service.title}</h4>
                                 <p className="text-body-2">{service.description}</p>
                             </div>
                         </div>
@@ -63,7 +63,7 @@ function ServiceResultPage({ settings }: { settings: Setting }) {
                 </div>
                 <div className='w-full flex justify-center mt-8'>
                     <Link href={whatsappLink(settings.socials.whatsapp ?? '')}>
-                        <Button className="w-full md:w-fit font-outfit font-semibold rounded-full bg-gold-primary text-heading-2 cursor-pointer py-6 md:py-4 px-3 hover:bg-gold-secondary">
+                        <Button className="w-full md:w-fit font-outfit font-medium rounded-full bg-gold-primary text-heading-2 cursor-pointer py-6 md:py-4 px-3 hover:bg-gold-secondary">
                             <Icons name="whatsapp" className="w-6 h-6" /> Reservasi Sekarang
                         </Button>
                     </Link>

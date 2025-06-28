@@ -35,7 +35,7 @@ export default async function DoctorsSection({ settings }: { settings: Setting }
   return (
     <section className="flex justify-center px-4 py-8 md:py-20 bg-gradient-to-t from-gray-primary to-white">
       <div className="md:max-w-5xl xl:max-w-6xl">
-        <h3 className="text-3xl font-gotham font-bold text-heading-1 mb-6 md:mb-10">
+        <h3 className="text-3xl font-gotham font-medium text-heading-1 mb-6 md:mb-10">
           Tim Dokter Profesional dan Tepercaya
         </h3>
 
@@ -55,7 +55,7 @@ export default async function DoctorsSection({ settings }: { settings: Setting }
               <div className="w-full absolute bottom-0">
                 <div className="z-20 w-full h-28 bg-gradient-to-t from-blue-primary to-transparent" />
                 <div className="w-full p-6 bg-blue-primary text-white ">
-                  <h4 className="text-lg md:text-[22px] font-semibold font-gotham">
+                  <h4 className="text-lg md:text-[22px] font-medium font-gotham">
                     {e.name}
                   </h4>
                   <p className="text-lg">{e.specialty}</p>
@@ -68,13 +68,13 @@ export default async function DoctorsSection({ settings }: { settings: Setting }
         <div className="w-full flex justify-center mt-8">
           <div className="w-full flex flex-col md:flex-row md:justify-center gap-4">
             <Link href={"/dokter"}>
-              <Button className="w-full md:w-fit font-outfit font-semibold rounded-full bg-white text-heading-2 cursor-pointer py-6 md:py-4 px-3 hover:bg-gray-400">
+              <Button className="w-full md:w-fit font-outfit font-medium rounded-full bg-white text-heading-2 cursor-pointer py-6 md:py-4 px-3 hover:bg-gray-400">
                 Baca Profil Lengkap
               </Button>
             </Link>
 
             <Link href={whatsappLink(settings.socials.whatsapp ?? '')}>
-              <Button className="w-full md:w-fit font-outfit font-semibold rounded-full bg-gold-primary text-heading-2 cursor-pointer py-6 md:py-4 px-3 hover:bg-gold-secondary">
+              <Button className="w-full md:w-fit font-outfit font-medium rounded-full bg-gold-primary text-heading-2 cursor-pointer py-6 md:py-4 px-3 hover:bg-gold-secondary">
                 <Icons name="whatsapp" className="w-6 h-6" /> Buat janji dokter
               </Button>
             </Link>

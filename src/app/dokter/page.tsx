@@ -142,14 +142,14 @@ export default async function Dokter() {
                 />
               </div>
               <div className="flex flex-col gap-2 md:gap-3">
-                <h3 className="text-2xl md:text-[28px] leading-8 md:leading-10 md:text-4xl font-gotham font-bold text-heading-1">
+                <h3 className="text-2xl md:text-[28px] leading-8 md:leading-10 md:text-4xl font-gotham font-medium text-heading-1">
                   {e.name}
                 </h3>
-                <p className="md:text-lg font-bold text-body-1">
+                <p className="md:text-lg font-semibold text-body-1">
                   {e.specialty}
                 </p>
                 <div className="w-full h-[2px] bg-line-color my-2" />
-                <p className=" font-bold text-body-1">Jadwal Praktik:</p>
+                <p className=" font-semibold text-body-1">Jadwal Praktik:</p>
                 <ul className="">
                   {e.schedules?.map((schedule, idx: number) => (
                     <li
@@ -162,19 +162,19 @@ export default async function Dokter() {
                   ))}
                 </ul>
                 <div className="w-full h-[2px] bg-line-color my-2" />
-                <p className="font-bold text-body-1">Spesialisasi Treatment:</p>
+                <p className="font-semibold text-body-1">Spesialisasi Treatment:</p>
                 <ul className="flex flex-wrap gap-2">
                   {e.treatments.map((exp, idx: number) => (
                     <li
                       key={idx}
-                      className="py-1 px-3 rounded-full font-semibold bg-blue-secondary text-white"
+                      className="py-1 px-3 rounded-full font-medium bg-blue-secondary text-white"
                     >
                       {exp}
                     </li>
                   ))}
                 </ul>
                 <div className="w-full h-[2px] bg-line-color my-2" />
-                <p className="font-bold text-body-1">Pendidikan:</p>
+                <p className="font-semibold text-body-1">Pendidikan:</p>
                 <ul className="list-disc pl-5">
                   {e.educations.map((a, i) => (
                     <li key={i} className="text-body-1">

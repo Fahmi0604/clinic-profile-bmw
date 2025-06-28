@@ -65,24 +65,24 @@ export default async function Fasilitas() {
         <div className="w-full md:max-w-5xl xl:max-w-6xl">
           {kategori.map((e) => (
             <div key={e.id} className="mb-24">
-              <h3 className="text-3xl font-gotham font-bold text-heading-1 mb-6 md:mb-10">
+              <h3 className="text-3xl font-gotham font-medium text-heading-1 mb-6 md:mb-10">
                 {e.title}
               </h3>
-              <div className="w-full flex flex-col md:flex-row justify-around items-top gap-5 md:gap-0">
+              <div className="w-full flex flex-col flex-wrap md:flex-row justify-between items-top gap-5 md:gap-10">
                 {e.facilities?.map((e) => (
                   <div
                     key={e.id}
-                    className="w-full md:w-[31%] flex flex-col gap-4"
+                    className="w-full md:w-[48%] flex flex-col md:flex-row gap-6"
                   >
                     <Image
                       src={e.thumbnailUrl ?? ''}
                       alt={e.name}
                       width={200}
                       height={200}
-                      className="w-full h-[275px] object-cover rounded-xl"
+                      className="w-full md:w-[50%] h-[275px] md:h-[250px] object-cover rounded-xl"
                     />
                     <div className="w-full">
-                      <h4 className="text-[22px] font-semibold font-gotham text-heading-1 mb-2">
+                      <h4 className="text-[22px] font-medium font-gotham text-heading-1 mb-2">
                         {e.name}
                       </h4>
                       <p className="text-body-2">{e.description}</p>

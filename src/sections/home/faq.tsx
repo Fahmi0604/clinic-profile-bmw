@@ -50,7 +50,7 @@ export default function FaqPage() {
     return (
         <section className='hidden px-4 md:flex md:justify-center py-8 md:py-20'>
             <div className='w-full md:max-w-5xl xl:max-w-6xl'>
-                <h3 className="text-3xl font-gotham font-bold text-heading-1 mb-2 md:mb-6 ">Pertanyaan yang sering ditanyakan</h3>
+                <h3 className="text-3xl font-gotham font-medium text-heading-1 mb-2 md:mb-6 ">Pertanyaan yang sering ditanyakan</h3>
                 <div className='h-[2px] bg-line-color mb-6 md:mb-10' />
 
                 <Accordion
@@ -60,7 +60,7 @@ export default function FaqPage() {
                 >
                     {faqs.map((e, i) => (
                         <AccordionItem key={i} className='mt-2 border-b-2' value={`item-${i}`}>
-                            <AccordionTrigger className='text-lg text-body-1 font-bold'>{e.title}</AccordionTrigger>
+                            <AccordionTrigger className='text-lg text-body-1 font-medium'>{e.title}</AccordionTrigger>
                             <AccordionContent className='text-body-1 max-w-4xl' >{e.description}</AccordionContent>
                         </AccordionItem>
                     ))}

@@ -76,12 +76,12 @@ async function ServicesPage({ settings }: { settings: Setting }) {
   console.log("SERVICES", services);
   return (
     <section className="px-4 flex justify-center py-8 md:py-20">
-      <div className="md:max-w-5xl xl:max-w-6xl">
+      <div className="w-full md:max-w-5xl xl:max-w-6xl">
         <h3 className="text-2xl md:text-3xl font-gotham font-medium text-heading-1 mb-6 md:mb-10">
           Layanan Lengkap untuk Seluruh Keluarga
         </h3>
 
-        <div className="w-full flex flex-col md:flex-row justify-around items-stretch gap-5 md:gap-0">
+        <div className="w-full flex flex-col md:flex-row justify-around md:justify-between items-stretch gap-5 md:gap-0">
           <div className="w-full flex flex-col md:w-[31%] shadow shadow-line-color rounded-xl ">
             <div className="relative h-[400px] overflow-hidden">
               <Image
@@ -89,7 +89,7 @@ async function ServicesPage({ settings }: { settings: Setting }) {
                 alt={'thumbnail'}
                 width={200}
                 height={200}
-                className="w-full object-cover object-[90%_10%] rounded-xl"
+                className="w-full h-full object-cover md:object-[50%_120%] xl:object-[50%_50%] rounded-xl"
               />
               <div className="w-full absolute bottom-0">
                 <div className="z-20 w-full h-28 bg-gradient-to-t from-blue-primary to-transparent" />
@@ -124,7 +124,7 @@ async function ServicesPage({ settings }: { settings: Setting }) {
                 alt={'thumbnail 2'}
                 width={200}
                 height={200}
-                className="w-full object-cover object-center rounded-xl"
+                className="w-full h-full object-cover md:object-[50%_120%] xl:object-[50%_80%] rounded-xl"
               />
               <div className="w-full absolute bottom-0">
                 <div className="z-20 w-full h-28 bg-gradient-to-t from-blue-primary to-transparent" />
@@ -159,7 +159,7 @@ async function ServicesPage({ settings }: { settings: Setting }) {
                 alt={'thumbnail 3'}
                 width={200}
                 height={200}
-                className="w-full object-cover object-center rounded-xl"
+                className="w-full h-full object-cover object-bottom md:object-[50%_350%] xl:object-[50%_125%] rounded-xl"
               />
               <div className="w-full absolute bottom-0">
                 <div className="z-20 w-full h-28 bg-gradient-to-t from-blue-primary to-transparent" />

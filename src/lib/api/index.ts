@@ -11,8 +11,8 @@ type BaseResponse<T> = {
   data: T[];
 };
 
-export const API_BASE_URL = "https://api.cms.ts-exp.com/api/";
-const BASE_URL = "https://api.cms.ts-exp.com/api/" + "public";
+export const API_BASE_URL = "https://api.bmwdentalclinic.com/api/";
+const BASE_URL = "https://api.bmwdentalclinic.com/api/" + "public";
 export async function getDoctors(): Promise<BaseResponse<Doctor>> {
   const res = await fetcher<BaseResponse<Doctor>>(`${BASE_URL}/doctors`, {
     cache: "no-store",

@@ -71,6 +71,7 @@ export default async function Layanan() {
   // ]
 
   const generateBorder = (index: number, length: number) => {
+    if (index !== 0 && index !== 1) return "border-t";
     if (index % 2 === 0) return "md:border-r";
     if (index % 2 !== 0 && length % 2 !== 0) return "md:border-b";
 
@@ -145,7 +146,7 @@ export default async function Layanan() {
                 <div className="w-full absolute bottom-0">
                   <div className="z-20 w-full h-28 bg-gradient-to-t from-blue-primary to-transparent" />
                   <div className="w-full p-6 bg-blue-primary text-white">
-                    <h3 className="text-2xl md:text-3xl font-semibold font-gotham">
+                    <h3 className="text-2xl md:text-3xl font-medium font-gotham">
                       Menjaga senyuman untuk semua umur
                     </h3>
                   </div>
@@ -159,11 +160,11 @@ export default async function Layanan() {
                     key={e.name}
                     href={`layanan/${e.slug}`}
                     className={cn(
-                      "w-full p-6 border-t border-line-color ",
+                      "w-full p-6 border-line-color ",
                       generateBorder(i, e.name.length)
                     )}
                   >
-                    <div className="flex justify-between text-heading-1 font-bold text-[22px]">
+                    <div className="flex justify-between text-heading-1 font-semibold text-[22px]">
                       {e.name}
                       <Icons name="chevron" className="text-body-1" />
                     </div>
@@ -185,12 +186,12 @@ export default async function Layanan() {
                   alt={'service 2'}
                   width={200}
                   height={200}
-                  className={cn("w-full h-full object-cover rounded-xl", "object-[50%_30%]")}
+                  className={cn("w-full h-full object-cover rounded-xl", "object-[50%_40%]")}
                 />
                 <div className="w-full absolute bottom-0">
                   <div className="z-20 w-full h-28 bg-gradient-to-t from-blue-primary to-transparent" />
                   <div className="w-full p-6 bg-blue-primary text-white">
-                    <h3 className="text-2xl md:text-3xl font-semibold font-gotham">
+                    <h3 className="text-2xl md:text-3xl font-medium font-gotham">
                       Untuk lansia yang butuh perhatian ekstra
                     </h3>
                   </div>
@@ -208,7 +209,7 @@ export default async function Layanan() {
                       generateBorder(i, e.name.length)
                     )}
                   >
-                    <div className="flex justify-between text-heading-1 font-bold text-[22px]">
+                    <div className="flex justify-between text-heading-1 font-semibold text-[22px]">
                       {e.name}
                       <Icons name="chevron" className="text-body-1" />
                     </div>
@@ -230,12 +231,12 @@ export default async function Layanan() {
                   alt={'service 3'}
                   width={200}
                   height={200}
-                  className={cn("w-full h-full object-cover rounded-xl", "")}
+                  className={cn("w-full h-full object-cover rounded-xl", "object-[50%_55%]")}
                 />
                 <div className="w-full absolute bottom-0">
                   <div className="z-20 w-full h-28 bg-gradient-to-t from-blue-primary to-transparent" />
                   <div className="w-full p-6 bg-blue-primary text-white">
-                    <h3 className="text-2xl md:text-3xl font-semibold font-gotham">
+                    <h3 className="text-2xl md:text-3xl font-medium font-gotham">
                       Perawatan gigi anak, aman & nyaman
                     </h3>
                   </div>
@@ -253,7 +254,7 @@ export default async function Layanan() {
                       generateBorder(i, e.name.length)
                     )}
                   >
-                    <div className="flex justify-between text-heading-1 font-bold text-[22px]">
+                    <div className="flex justify-between text-heading-1 font-semibold text-[22px]">
                       {e.name}
                       <Icons name="chevron" className="text-body-1" />
                     </div>
