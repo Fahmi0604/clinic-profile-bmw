@@ -81,6 +81,8 @@ export const revalidate = 60; // ISR regeneration time (60 seconds)
 export async function generateStaticParams() {
     const blogs = await getBlogs();
 
+    if (!blogs.data.length) return []
+
     return blogs.data?.filter(f => f.status === 'published').map((blog) => ({ slug: blog.slug }));
 }
 
