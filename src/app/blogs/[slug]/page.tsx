@@ -11,7 +11,7 @@ import Icons from '@/components/Icon';
 import Link from 'next/link';
 import { id } from 'date-fns/locale';
 import { PageWrapper } from '@/components';
-import { getBlogs, getBlogsBySlug } from '@/lib/api';
+import { getBlogsBySlug } from '@/lib/api';
 import Cta from '@/components/Cta';
 
 export const revalidate = 60; // ISR regeneration time (60 seconds)
