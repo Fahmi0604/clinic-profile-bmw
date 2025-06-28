@@ -15,6 +15,7 @@ import { getBlogs, getBlogsBySlug } from '@/lib/api';
 import Cta from '@/components/Cta';
 
 export const revalidate = 60; // ISR regeneration time (60 seconds)
+export const dynamicParams = true; // Allow dynamic params
 
 // const getBlog = cache(async (slug: string) => {
 //     return findBlogBySlug(slug);
@@ -78,13 +79,14 @@ export const revalidate = 60; // ISR regeneration time (60 seconds)
 //       <blockquote><p>Typography is pretty important if you don't want your stuff to look like trash. Make it good then it won't be bad.</p></blockquote>`
 
 // Generate static paths for blogs (optional)
-export async function generateStaticParams() {
-    const blogs = await getBlogs();
-
-    if (!blogs.data.length) return []
-
-    return blogs.data?.filter(f => f.status === 'published').map((blog) => ({ slug: blog.slug }));
-}
+// Remove or comment out generateStaticParams function
+// export async function generateStaticParams() {
+//     const blogs = await getBlogs();
+//
+//     if (!blogs.data.length) return []
+//
+//     return blogs.data?.filter(f => f.status === 'published').map((blog) => ({ slug: blog.slug }));
+// }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
     const slug = (await params).slug
