@@ -9,20 +9,21 @@ import Image from 'next/image';
 import Icons from '@/components/Icon';
 import Link from 'next/link';
 import { BeforeAfter } from '@/components';
-import { getServiceBySlug, getServices } from '@/lib/api';
+import { getServiceBySlug } from '@/lib/api';
 
 export const revalidate = 60; // ISR regeneration time (60 seconds)
+export const dynamicParams = true; // Allow dynamic params
 
 // const getBlog = cache(async (slug: string) => {
 //     return findBlogBySlug(slug);
 // })
 
 // Generate static paths for blogs (optional)
-export async function generateStaticParams() {
-    const services = await getServices();
+// export async function generateStaticParams() {
+//     const services = await getServices();
 
-    return services.data?.map((s) => ({ slug: s.slug }));
-}
+//     return services.data?.map((s) => ({ slug: s.slug }));
+// }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
     const slug = (await params).slug
