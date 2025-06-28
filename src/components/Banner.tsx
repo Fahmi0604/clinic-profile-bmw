@@ -46,11 +46,11 @@ export function Banner(props: BannerProps) {
                     {/* gotham */}
                     <div className="md:w-fit">
                         <FadeInFadeOut delay={0.3} duration={1.2}>
-                            <h1 className="text-4xl xl:text-5xl md:max-w-lg xl:max-w-[625px] font-medium font-gotham mb-4 -mr-10">{title}</h1>
+                            <h1 className="text-4xl xl:text-5xl md:max-w-lg xl:max-w-[625px] font-medium font-gotham mb-6 -mr-10">{title}</h1>
                         </FadeInFadeOut>
                         {/* <h1 className="md:hidden text-4xl md:text-5xl font-bold font-gotham mb-4">Tim Dokter <br /> Profesional dan <br /> Terpercaya</h1> */}
                         <SlideIn from="top" delay={0.5} duration={1.3}>
-                            <p className="leading-7 mb-10 md:mb-4 md:text-lg md:max-w-lg">{description}</p>
+                            <p className="leading-7 mb-10 md:mb-16 md:text-lg md:max-w-lg">{description}</p>
                         </SlideIn>
 
                         {bottomSlot}

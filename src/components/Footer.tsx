@@ -47,17 +47,17 @@ export default async function Footer({ settings }: { settings: Setting }) {
                 <div className='flex flex-col md:flex-row gap-14 md:gap-6'>
                     <div className='flex flex-col gap-4 text-white font-outfit md:px-[10%]'>
                         <Label className='text-lg font-bold'>Hubungi Kami:</Label>
-                        <div className='flex items-center gap-x-2'><Icons name="phone" className='w-6 h-6 text-white' />{settings.contactInfo.phone ?? ''}</div>
-                        <div className='flex items-center gap-x-2'><Icons name='whatsapp' className='w-6 h-6 text-white' />{settings.socials.whatsapp}</div>
-                        <div className='flex items-center gap-x-2'><Icons name='instagram' className='w-6 h-6 text-white' />{settings.socials.instagram}</div>
+                        <div className='flex items-center gap-x-2'><Icons name="phone" className='w-6 h-6 text-white' />{settings.contactInfo?.phone ?? ''}</div>
+                        <div className='flex items-center gap-x-2'><Icons name='whatsapp' className='w-6 h-6 text-white' />{settings.socials?.whatsapp ?? ''}</div>
+                        <div className='flex items-center gap-x-2'><Icons name='instagram' className='w-6 h-6 text-white' />{settings.socials?.instagram ?? ''}</div>
                     </div>
                     <div className='grid gap-4 text-white font-outfit'>
                         <Label className='text-lg font-bold'>Lokasi Klinik:</Label>
-                        <p>{settings.contactInfo.address ?? `Jl. Burjamhal No.B4
+                        <p>{settings.contactInfo?.address ?? `Jl. Burjamhal No.B4
                             Petisah Tengah, Kec. Medan Petisah
                             Kota Medan, Sumatera Utara 20112`}</p>
 
-                        <Link href={settings.webUrl}>
+                        <Link href={settings?.webUrl ?? ''}>
                             <u className='cursor-pointer'>Lihat di Google Maps</u>
                         </Link>
                     </div>

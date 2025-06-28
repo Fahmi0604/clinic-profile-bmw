@@ -55,7 +55,7 @@ export default async function DoctorsSection({ settings }: { settings: Setting }
               <div className="w-full absolute bottom-0">
                 <div className="z-20 w-full h-28 bg-gradient-to-t from-blue-primary to-transparent" />
                 <div className="w-full p-6 bg-blue-primary text-white ">
-                  <h4 className="text-lg md:text-[22px] font-medium font-gotham">
+                  <h4 className="text-lg md:text-[21px] xl:text-[22px] font-medium font-gotham">
                     {e.name}
                   </h4>
                   <p className="text-lg">{e.specialty}</p>
@@ -73,7 +73,7 @@ export default async function DoctorsSection({ settings }: { settings: Setting }
               </Button>
             </Link>
 
-            <Link href={whatsappLink(settings.socials.whatsapp ?? '')}>
+            <Link href={whatsappLink(settings.socials?.whatsapp ?? '')}>
               <Button className="w-full md:w-fit font-outfit font-medium rounded-full bg-gold-primary text-heading-2 cursor-pointer py-6 md:py-4 px-3 hover:bg-gold-secondary">
                 <Icons name="whatsapp" className="w-6 h-6" /> Buat janji dokter
               </Button>

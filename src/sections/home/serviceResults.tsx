@@ -62,7 +62,7 @@ function ServiceResultPage({ settings }: { settings: Setting }) {
                     ))}
                 </div>
                 <div className='w-full flex justify-center mt-8'>
-                    <Link href={whatsappLink(settings.socials.whatsapp ?? '')}>
+                    <Link href={whatsappLink(settings.socials?.whatsapp ?? '')}>
                         <Button className="w-full md:w-fit font-outfit font-medium rounded-full bg-gold-primary text-heading-2 cursor-pointer py-6 md:py-4 px-3 hover:bg-gold-secondary">
                             <Icons name="whatsapp" className="w-6 h-6" /> Reservasi Sekarang
                         </Button>

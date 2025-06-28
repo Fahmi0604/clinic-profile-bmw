@@ -30,7 +30,7 @@ export default function Navbar({ settings }: { settings: Setting }) {
     return (
         <>
             <header className="sticky top-0 z-[100] w-full shadow bg-blue-primary ">
-                <PromoBar headline={settings.highlight.title} />
+                <PromoBar headline={settings.highlight?.title ?? ''} />
                 <div className="container mx-auto flex h-16 md:h-24 md:max-w-5xl xl:max-w-6xl items-center justify-between px-4 xl:px-0">
                     <Link href="/" className="hidden md:flex md:items-center gap-2">
                         {/* <MountainIcon className="h-6 w-6 text-white" /> */}
@@ -50,7 +50,7 @@ export default function Navbar({ settings }: { settings: Setting }) {
                         ))}
                     </nav>
                     {/* <div className="flex items-center gap-4"> */}
-                    <Link href={whatsappLink(settings.contactInfo.phone ?? '')}>
+                    <Link href={whatsappLink(settings.contactInfo?.phone ?? '')}>
                         <Button className="hidden md:flex text-md font-outfit text-heading-2 font-semibold rounded-full cursor-pointer bg-gold-primary py-5 mx-4 hover:bg-gold-secondary">
                             <Icons name="whatsapp" className="h-6 w-6 text-heading-2" />
                             Reservasi
