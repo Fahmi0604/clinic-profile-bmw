@@ -30,7 +30,7 @@ export function Banner(props: BannerProps) {
             </div>
             <div className="w-full md:max-w-5xl xl:max-w-6xl md:w-[65vw] px-4 md:px-0 flex justify-end items-center bg-blue-primary text-white">
                 {/* gotham */}
-                {/* <div className="md:w-fit">
+                <div className="md:w-fit md:hidden">
                     <FadeInFadeOut delay={0.3} duration={1.2}>
                         <h1 className="text-4xl xl:text-5xl md:max-w-lg xl:max-w-2xl font-medium font-gotham mb-4 -mr-10">{title}</h1>
                     </FadeInFadeOut>
@@ -39,9 +39,9 @@ export function Banner(props: BannerProps) {
                     </SlideIn>
 
                     {bottomSlot}
-                </div> */}
+                </div>
             </div>
-            <div className='w-full absolute flex justify-center items-center h-[325px] md:h-[80vh]'>
+            <div className='hidden md:flex w-full absolute justify-center items-center h-[325px] md:h-[80vh]'>
                 <div className="w-full md:max-w-5xl xl:max-w-6xl px-4 md:px-0 flex items-center text-white">
                     {/* gotham */}
                     <div className="md:w-fit">

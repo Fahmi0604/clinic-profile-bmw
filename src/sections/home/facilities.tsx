@@ -8,7 +8,7 @@ import { notFound } from "next/navigation";
 import React from "react";
 
 export default async function FacilitiesPage({ settings }: { settings: Setting }) {
-  const _facilities = await getFacilities();
+  const _facilities = await getFacilities({ isHighlighted: true });
   // const facilities = [
   //     {
   //         id: 1,

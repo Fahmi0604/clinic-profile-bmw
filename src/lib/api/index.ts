@@ -13,26 +13,40 @@ type BaseResponse<T> = {
 
 export const API_BASE_URL = "https://api.bmwdentalclinic.com/api/";
 const BASE_URL = "https://api.bmwdentalclinic.com/api/" + "public";
-export async function getDoctors(): Promise<BaseResponse<Doctor>> {
-  const res = await fetcher<BaseResponse<Doctor>>(`${BASE_URL}/doctors`, {
-    cache: "no-store",
-    // headers: {
-    //   Authorization: `Bearer eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIn0..Goq3DwXNNOPqtez1.drTTp0wfOa2qI12MNrTRUXFhQhFHEKV2KaplMOj1cGyC5oNnpYXs68ORc5_VEQSOVNNBydHrpRYvuTExqIV4zD2D_7PJTxcAjGkP9EpdN_jpBlx9vn4nVH1f-SivP65Ypv0xYeI-RLgh5APzp2RGxsoLUpvUD_p_Au2eHmIKTGeu2JC1PZ-RCfYJainNWO-VmDGni9MMJE9g4ut5SjJBhqRUwxzyqY0h83hNlsHfWrEw5ECk.hB7Eza35UwgtbLaRm0LI1g`,
-    // },
-  });
+export async function getDoctors({
+  isHighlighted = false,
+}: {
+  isHighlighted?: boolean;
+} = {}): Promise<BaseResponse<Doctor>> {
+  const res = await fetcher<BaseResponse<Doctor>>(
+    `${BASE_URL}/doctors?isHighlighted=${isHighlighted ? "true" : "false"}`,
+    {
+      cache: "no-store",
+      // headers: {
+      //   Authorization: `Bearer eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIn0..Goq3DwXNNOPqtez1.drTTp0wfOa2qI12MNrTRUXFhQhFHEKV2KaplMOj1cGyC5oNnpYXs68ORc5_VEQSOVNNBydHrpRYvuTExqIV4zD2D_7PJTxcAjGkP9EpdN_jpBlx9vn4nVH1f-SivP65Ypv0xYeI-RLgh5APzp2RGxsoLUpvUD_p_Au2eHmIKTGeu2JC1PZ-RCfYJainNWO-VmDGni9MMJE9g4ut5SjJBhqRUwxzyqY0h83hNlsHfWrEw5ECk.hB7Eza35UwgtbLaRm0LI1g`,
+      // },
+    }
+  );
 
   console.log("CEK DOKTER: ", res);
 
   return res;
 }
 
-export async function getFacilities(): Promise<BaseResponse<Facility>> {
-  const res = await fetcher<BaseResponse<Facility>>(`${BASE_URL}/facilities`, {
-    cache: "no-store",
-    // headers: {
-    //   Authorization: `Bearer eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIn0..Goq3DwXNNOPqtez1.drTTp0wfOa2qI12MNrTRUXFhQhFHEKV2KaplMOj1cGyC5oNnpYXs68ORc5_VEQSOVNNBydHrpRYvuTExqIV4zD2D_7PJTxcAjGkP9EpdN_jpBlx9vn4nVH1f-SivP65Ypv0xYeI-RLgh5APzp2RGxsoLUpvUD_p_Au2eHmIKTGeu2JC1PZ-RCfYJainNWO-VmDGni9MMJE9g4ut5SjJBhqRUwxzyqY0h83hNlsHfWrEw5ECk.hB7Eza35UwgtbLaRm0LI1g`,
-    // },
-  });
+export async function getFacilities({
+  isHighlighted = false,
+}: {
+  isHighlighted?: boolean;
+} = {}): Promise<BaseResponse<Facility>> {
+  const res = await fetcher<BaseResponse<Facility>>(
+    `${BASE_URL}/facilities?isHighlighted=${isHighlighted ? "true" : "false"}`,
+    {
+      cache: "no-store",
+      // headers: {
+      //   Authorization: `Bearer eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIn0..Goq3DwXNNOPqtez1.drTTp0wfOa2qI12MNrTRUXFhQhFHEKV2KaplMOj1cGyC5oNnpYXs68ORc5_VEQSOVNNBydHrpRYvuTExqIV4zD2D_7PJTxcAjGkP9EpdN_jpBlx9vn4nVH1f-SivP65Ypv0xYeI-RLgh5APzp2RGxsoLUpvUD_p_Au2eHmIKTGeu2JC1PZ-RCfYJainNWO-VmDGni9MMJE9g4ut5SjJBhqRUwxzyqY0h83hNlsHfWrEw5ECk.hB7Eza35UwgtbLaRm0LI1g`,
+      // },
+    }
+  );
 
   return res;
 }

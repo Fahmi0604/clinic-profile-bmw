@@ -7,7 +7,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 export default async function DoctorsSection({ settings }: { settings: Setting }) {
-  const _dokter = await getDoctors();
+  const _dokter = await getDoctors({ isHighlighted: true });
   // const dokter = [
   //     {
   //         id: 1,

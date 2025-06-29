@@ -34,7 +34,7 @@ async function Cta(props: CtaProps) {
                 {/* gotham */}
                 <div className="md:w-fit md:min-w-xl">
                     {/* <h1 className="hidden md:block text-5xl font-bold font-gotham mb-4">Healing to Your Tooth Pain, <br /> Perfecting Your Smile </h1> */}
-                    <h2 className="text-[28px] md:text-4xl md:max-w-lg xl:max-w-xl font-medium font-gotham mb-2 md:mb-4">{title}</h2>
+                    <h2 className="text-xl text-[28px] md:text-3xl md:text-[31px] xl:text-4xl xl:text-[35px] md:max-w-lg xl:max-w-xl font-medium font-gotham mb-2 md:mb-4">{title}</h2>
                     <p className="leading-7 mb-6 md:mb-12 md:text-lg md:max-w-md">{description}</p>
 
                     <div className="flex flex-col md:flex-row gap-4 mb-4">
