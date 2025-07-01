@@ -4,10 +4,21 @@ export default {
     generateRobotsTxt: true,
     additionalPaths: async () => {
         try {
-            const response = await fetch('https://api.bmwdentalclinic.com/api/public/posts?status=published');
+            // Add timeout to prevent build failures
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
+
+            const response = await fetch('https://api.bmwdentalclinic.com/api/public/posts?status=published', {
+                signal: controller.signal,
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            clearTimeout(timeoutId);
 
             if (!response.ok) {
-                console.error('Failed to fetch blogs for sitemap');
+                console.warn('Failed to fetch blogs for sitemap, continuing without dynamic blog paths');
                 return [];
             }
 
@@ -24,7 +35,11 @@ export default {
                 priority: 0.7,
             }));
         } catch (error) {
-            console.error('Error fetching blogs for sitemap:', error);
+            if (error.name === 'AbortError') {
+                console.warn('Blog fetch timed out during sitemap generation, continuing without dynamic blog paths');
+            } else {
+                console.warn('Error fetching blogs for sitemap:', error.message);
+            }
             return [];
         }
     },
