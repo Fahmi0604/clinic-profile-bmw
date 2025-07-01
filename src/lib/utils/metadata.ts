@@ -1,6 +1,4 @@
 import { Metadata } from "next";
-import { API_BASE_URL } from "../api";
-
 interface GenerateMetadataParams {
   title: string;
   description: string;
@@ -14,8 +12,8 @@ export function metaData({
   images = [],
   path = "",
 }: GenerateMetadataParams): Metadata {
-  const baseUrl = API_BASE_URL || "https://yourdomain.com";
-  const url = path ? `${baseUrl}${path}` : baseUrl;
+  const baseUrl = "https://bmwdentalclinic.com";
+  const url = path ? `${baseUrl}/${path}` : baseUrl;
 
   return {
     metadataBase: new URL(baseUrl),
