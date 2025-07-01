@@ -6,4 +6,4 @@ Allow: /
 Host: https://bmwdentalclinic.com
 
 # Sitemaps
-Sitemap: https://bmwdentalclinic.com/sitemap.xml
+Sitemap: Sitemap: https://bmwdentalclinic.com/api/sitemap
