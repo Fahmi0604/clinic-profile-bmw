@@ -17,67 +17,6 @@ import Cta from '@/components/Cta';
 export const revalidate = 60; // ISR regeneration time (60 seconds)
 export const dynamicParams = true; // Allow dynamic params
 
-// const getBlog = cache(async (slug: string) => {
-//     return findBlogBySlug(slug);
-// })
-
-// const blogs = [
-//     {
-//         id: 1,
-//         title: 'Tips Menjaga Kesehatan Gigi Anak Sejak Dini',
-//         metaTitle: 'Tips Menjaga Kesehatan Gigi Anak Sejak Dini',
-//         metaDesc: 'Tips menjaga kesehatan gigi anak sejak dini sangat penting untuk perkembangan gigi permanen yang sehat',
-//         slug: 'blog-1',
-//         excerpt: 'Menjaga kesehatan gigi anak sejak dini sangat penting untuk perkembangan gigi permanen yang sehat',
-//         featuredImage: '/assets/images/banner-dokter.webp',
-//         publishedDate: new Date(),
-//     },
-//     {
-//         id: 2,
-//         title: 'Blog 2',
-//         metaTitle: 'Blog 2',
-//         metaDesc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-//         slug: 'blog-2',
-//         excerpt: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-//         featuredImage: '/assets/images/banner-service.webp',
-//         publishedDate: new Date(),
-//     },
-//     {
-//         id: 3,
-//         title: 'Blog 3',
-//         metaTitle: 'Blog 3',
-//         metaDesc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-//         slug: 'blog-3',
-//         excerpt: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-//         featuredImage: '/assets/images/banner-facilities.webp',
-//         publishedDate: new Date(),
-//     },
-//     {
-//         id: 4,
-//         title: 'Blog 4',
-//         metaTitle: 'Blog 4',
-//         metaDesc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-//         slug: 'blog-4',
-//         excerpt: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-//         featuredImage: '/assets/images/banner.webp',
-//         publishedDate: new Date(),
-//     },
-// ]
-
-// const content = `<h2>What to expect from here on out</h2>
-//       <p>What follows from here is just a bunch of absolute nonsense I've written to dogfood the plugin itself. It includes every sensible typographic element I could think of, like <strong>bold text</strong>, unordered lists, ordered lists, code blocks, block quotes, <em>and even italics</em>.</p>
-//       <p>It's important to cover all of these use cases for a few reasons:</p>
-//       <ol>
-//         <li>We want everything to look good out of the box.</li>
-//         <li>Really just the first reason, that's the whole point of the plugin.</li>
-//         <li>Here's a third pretend reason though a list with three items looks more realistic than a list with two items.</li>
-//       </ol>
-//       <p>Now we're going to try out another header style.</p>
-//       <h3>Typography should be easy</h3>
-//       <p>So that's a header for you — with any luck if we've done our job correctly that will look pretty reasonable.</p>
-//       <p>Something a wise person once told me about typography is:</p>
-//       <blockquote><p>Typography is pretty important if you don't want your stuff to look like trash. Make it good then it won't be bad.</p></blockquote>`
-
 // Generate static paths for blogs (optional)
 // Remove or comment out generateStaticParams function
 // export async function generateStaticParams() {

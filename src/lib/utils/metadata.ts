@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { API_BASE_URL } from "../api";
 
 interface GenerateMetadataParams {
   title: string;
@@ -13,10 +14,11 @@ export function metaData({
   images = [],
   path = "",
 }: GenerateMetadataParams): Metadata {
-  const baseUrl = process.env.BASE_URL || "https://yourdomain.com";
+  const baseUrl = API_BASE_URL || "https://yourdomain.com";
   const url = path ? `${baseUrl}${path}` : baseUrl;
 
   return {
+    metadataBase: new URL(baseUrl),
     title,
     description,
     openGraph: {
@@ -27,8 +29,9 @@ export function metaData({
         // url: img.url.startsWith("http") ? img.url : `${baseUrl}${img.url}`,
         url: img.url,
       })),
-      siteName: "Your Site Name",
+      siteName: "BMW Dental Clinic – Klinik Gigi Terbaik di Medan",
     },
+
     // twitter: {
     //   card: "summary_large_image",
     //   title,

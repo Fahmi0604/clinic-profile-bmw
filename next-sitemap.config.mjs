@@ -1,21 +1,31 @@
 // next-sitemap.config.mjs
-import { PrismaClient } from '@prisma/client';
-
-const prisma = new PrismaClient();
-
 export default {
-    siteUrl: process.env.BASE_URL || 'https://yourdomain.com',
+    siteUrl: 'https://bmwdentalclinic.com',
     generateRobotsTxt: true,
     additionalPaths: async () => {
-        const blogs = await prisma.blog.findMany({
-            where: { published: true },
-        });
+        try {
+            const response = await fetch('https://api.bmwdentalclinic.com/api/public/posts?status=published');
 
-        return blogs.map(blog => ({
-            loc: `/blogs/${blog.slug}`,
-            lastmod: blog.updatedAt.toISOString(),
-            changefreq: 'daily',
-            priority: 0.7,
-        }));
+            if (!response.ok) {
+                console.error('Failed to fetch blogs for sitemap');
+                return [];
+            }
+
+            const blogs = await response.json();
+
+            if (!blogs?.data?.length) {
+                return [];
+            }
+
+            return blogs?.data?.map(blog => ({
+                loc: `/blogs/${blog.slug}`,
+                lastmod: blog.updatedAt,
+                changefreq: 'daily',
+                priority: 0.7,
+            }));
+        } catch (error) {
+            console.error('Error fetching blogs for sitemap:', error);
+            return [];
+        }
     },
 };

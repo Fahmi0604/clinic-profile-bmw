@@ -1,15 +1,25 @@
 import { Banner, PageWrapper } from "@/components";
 import Cta from "@/components/Cta";
 import { getFacilities } from "@/lib/api";
+import { metaData } from "@/lib/utils/metadata";
 import { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import React from "react";
 
-export const metadata: Metadata = {
-  title: "Fasilitas",
-  description: "Fasilitas",
-};
+// export const metadata: Metadata = {
+//   title: "Fasilitas",
+//   description: "Fasilitas milik BMW Dental Clinic yang terbaru dan modern untuk hasil terbaik",
+// };
+
+export async function generateMetadata(): Promise<Metadata> {
+  return metaData({
+    title: 'Fasilitas',
+    description: 'Fasilitas milik BMW Dental Clinic yang terbaru dan modern untuk hasil terbaik',
+    images: [{ url: '/assets/images/banner-facilities.webp' }],
+    path: '/fasilitas',
+  });
+}
 
 export default async function Fasilitas() {
   const _facilities = await getFacilities();

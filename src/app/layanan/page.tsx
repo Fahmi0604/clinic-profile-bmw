@@ -3,16 +3,26 @@ import Cta from "@/components/Cta";
 import Icons from "@/components/Icon";
 import { getServices } from "@/lib/api";
 import { cn } from "@/lib/utils";
+import { metaData } from "@/lib/utils/metadata";
 import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import React from "react";
 
-export const metadata: Metadata = {
-  title: "Layanan",
-  description: "Layanan",
-};
+// export const metadata: Metadata = {
+//   title: "Layanan",
+//   description: "Layanan pemeriksaan gigi untuk gigi sehat dan estetik di BMW Dental Clinic",
+// };
+
+export async function generateMetadata(): Promise<Metadata> {
+  return metaData({
+    title: 'Layanan',
+    description: 'Layanan pemeriksaan gigi untuk gigi sehat dan estetik di BMW Dental Clinic',
+    images: [{ url: '/assets/images/banner-service.webp' }],
+    path: '/layanan',
+  });
+}
 
 export default async function Layanan() {
   const _services = await getServices();
@@ -182,7 +192,7 @@ export default async function Layanan() {
             >
               <div className="relative h-[400px] md:h-[500px] overflow-hidden">
                 <Image
-                  src={'assets/images/service2.webp'}
+                  src={'assets/images/ratio45.webp'}
                   alt={'service 2'}
                   width={200}
                   height={200}

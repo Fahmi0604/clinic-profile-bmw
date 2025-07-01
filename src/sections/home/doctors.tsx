@@ -56,7 +56,7 @@ export default async function DoctorsSection({ settings }: { settings: Setting }
                 <div className="z-20 w-full h-28 bg-gradient-to-t from-blue-primary to-transparent" />
                 <div className="w-full p-6 bg-blue-primary text-white ">
                   <h4 className="text-lg md:text-[21px] xl:text-[22px] font-medium font-gotham">
-                    {e.name}
+                    {e.prefix ? e.prefix + '. ' : ''}{e.name}{e.postfix ? ', ' + e.postfix : ''}
                   </h4>
                   <p className="text-lg">{e.specialty}</p>
                 </div>

@@ -5,11 +5,21 @@ import { getDoctors } from "@/lib/api";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import React from "react";
+import { metaData } from "@/lib/utils/metadata";
 
-export const metadata: Metadata = {
-  title: "Dokter",
-  description: "Dokter",
-};
+// export const metadata: Metadata = {
+//   title: "Dokter",
+//   description: "Dokter Gigi Terdekat di Medan, hubungi kami untuk konsultasi dengan dokter gigi profesional",
+// };
+
+export async function generateMetadata(): Promise<Metadata> {
+  return metaData({
+    title: 'Dokter',
+    description: 'Dokter Gigi Terdekat di Medan, hubungi kami untuk konsultasi dengan dokter gigi profesional',
+    images: [{ url: '/assets/images/banner-dokter.webp' }],
+    path: '/dokter',
+  });
+}
 
 export default async function Dokter() {
   const _dokter = await getDoctors();

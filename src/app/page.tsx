@@ -6,6 +6,7 @@ import Icons from "@/components/Icon";
 import { Button } from "@/components/ui/button";
 import { getSettings } from "@/lib/api";
 import { whatsappLink } from "@/lib/utils";
+import { metaData } from "@/lib/utils/metadata";
 import DokterSection from "@/sections/home/doctors";
 import FacilitiesPage from "@/sections/home/facilities";
 import FaqPage from "@/sections/home/faq";
@@ -16,10 +17,19 @@ import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
-export const metadata: Metadata = {
-  title: "Home",
-  description: "Home",
-};
+// export const metadata: Metadata = {
+//   title: "Home",
+//   description: "BMW Dental Clinic adalah klinik gigi terpercaya, terjangkau dan modern di Medan dengan dokter gigi terbaik",
+// };
+
+export async function generateMetadata(): Promise<Metadata> {
+  return metaData({
+    title: 'Home',
+    description: 'BMW Dental Clinic adalah klinik gigi terpercaya, terjangkau dan modern di Medan dengan dokter gigi terbaik',
+    images: [{ url: '/assets/images/banner.webp' }],
+    path: '/',
+  });
+}
 
 export default async function Home() {
   const settings = await getSettings()
