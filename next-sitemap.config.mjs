@@ -3,32 +3,59 @@ export default {
     siteUrl: 'https://bmwdentalclinic.com',
     generateRobotsTxt: true,
     additionalPaths: async () => {
-        try {
-            // Add timeout to prevent build failures
-            const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
+        // Helper function for retry logic
+        const fetchWithRetry = async (url, options, maxRetries = 3) => {
+            for (let attempt = 1; attempt <= maxRetries; attempt++) {
+                try {
+                    const controller = new AbortController();
+                    const timeoutId = setTimeout(() => controller.abort(), 8000); // 8 second timeout per attempt
 
-            const response = await fetch('https://api.bmwdentalclinic.com/api/public/posts?status=published', {
-                signal: controller.signal,
+                    const response = await fetch(url, {
+                        ...options,
+                        signal: controller.signal,
+                    });
+
+                    clearTimeout(timeoutId);
+                    return response;
+                } catch (error) {
+                    console.warn(`Attempt ${attempt}/${maxRetries} failed:`, error.message);
+                    
+                    if (attempt === maxRetries) {
+                        throw error;
+                    }
+                    
+                    // Exponential backoff: wait 1s, 2s, 4s between retries
+                    const delay = Math.pow(2, attempt - 1) * 1000;
+                    await new Promise(resolve => setTimeout(resolve, delay));
+                }
+            }
+        };
+
+        try {
+            console.log('Fetching blog posts for sitemap generation...');
+            
+            const response = await fetchWithRetry('https://api.bmwdentalclinic.com/api/public/posts?status=published', {
                 headers: {
                     'Content-Type': 'application/json',
+                    'User-Agent': 'next-sitemap/1.0',
                 },
             });
 
-            clearTimeout(timeoutId);
-
             if (!response.ok) {
-                console.warn('Failed to fetch blogs for sitemap, continuing without dynamic blog paths');
+                console.warn(`API returned ${response.status}: ${response.statusText}. Continuing without dynamic blog paths.`);
                 return [];
             }
 
             const blogs = await response.json();
 
             if (!blogs?.data?.length) {
+                console.log('No published blogs found, continuing without dynamic blog paths.');
                 return [];
             }
 
-            return blogs?.data?.map(blog => ({
+            console.log(`Successfully fetched ${blogs.data.length} blog posts for sitemap.`);
+            
+            return blogs.data.map(blog => ({
                 loc: `/blogs/${blog.slug}`,
                 lastmod: blog.updatedAt,
                 changefreq: 'daily',
@@ -36,9 +63,11 @@ export default {
             }));
         } catch (error) {
             if (error.name === 'AbortError') {
-                console.warn('Blog fetch timed out during sitemap generation, continuing without dynamic blog paths');
+                console.warn('Blog fetch timed out after all retry attempts. Continuing without dynamic blog paths.');
+            } else if (error.code === 'ENOTFOUND' || error.code === 'ECONNREFUSED') {
+                console.warn('Network connectivity issue during sitemap generation. Continuing without dynamic blog paths.');
             } else {
-                console.warn('Error fetching blogs for sitemap:', error.message);
+                console.warn('Unexpected error fetching blogs for sitemap:', error.message, 'Continuing without dynamic blog paths.');
             }
             return [];
         }
