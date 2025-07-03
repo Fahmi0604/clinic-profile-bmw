@@ -69,7 +69,8 @@ export async function GET() {
       lastFetched = now;
     } catch (error) {
       console.error("Error generating sitemap:", error);
-      return NextResponse.error();
+      cachedSitemap = `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"></urlset>`;
+      // return NextResponse.error();
     }
   }
 
