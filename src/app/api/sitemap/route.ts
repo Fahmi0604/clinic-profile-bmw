@@ -74,6 +74,13 @@ export async function GET() {
     }
   }
 
+  console.log({
+    lastFetched,
+    now,
+    timeSinceLastFetch: now - lastFetched,
+    cachedSitemap,
+  });
+
   return new NextResponse(cachedSitemap, {
     headers: {
       "Content-Type": "application/xml",
