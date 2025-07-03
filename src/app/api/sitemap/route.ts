@@ -46,7 +46,10 @@ export async function GET() {
           priority: 0.7,
         })) || [];
 
-      const urls: Record<string, any>[] = [...staticUrls, ...blogUrls];
+      const urls: Record<string, string | number>[] = [
+        ...staticUrls,
+        ...blogUrls,
+      ];
 
       const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
       <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
