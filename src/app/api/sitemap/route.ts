@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { getBlogsForSitemap } from "@/lib/api";
 import { NextResponse } from "next/server";
 
