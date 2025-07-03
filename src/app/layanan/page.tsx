@@ -82,7 +82,7 @@ export default async function Layanan() {
 
   const generateBorder = (index: number, length: number) => {
     // console.log('index: ', index);
-    console.log(`index2: ${index}`, index % 2 === 1);
+    console.log(`index2: ${length} - ${index}`, index === (length - 1) && length % 2 !== 0);
 
     let classNames = ''
 
@@ -176,7 +176,7 @@ export default async function Layanan() {
                     href={`layanan/${e.slug}`}
                     className={cn(
                       "w-full p-6 border-line-color ",
-                      generateBorder(i, e.name.length)
+                      generateBorder(i, datas.umum.length)
                     )}
                   >
                     <div className="flex justify-between text-heading-1 font-semibold text-[22px]">
@@ -196,7 +196,7 @@ export default async function Layanan() {
             >
               <div className="relative h-[400px] md:h-[500px] overflow-hidden">
                 <Image
-                  src={'assets/images/ratio45.webp'}
+                  src={'assets/images/service2.webp'}
                   alt={'service 2'}
                   width={200}
                   height={200}
@@ -219,7 +219,7 @@ export default async function Layanan() {
                     href={`layanan/${e.slug}`}
                     className={cn(
                       "w-full p-6 border-t border-line-color ",
-                      generateBorder(i, e.name.length)
+                      generateBorder(i, datas.lansia.length)
                     )}
                   >
                     <div className="flex justify-between text-heading-1 font-semibold text-[22px]">
@@ -262,7 +262,7 @@ export default async function Layanan() {
                     href={`layanan/${e.slug}`}
                     className={cn(
                       "w-full p-6 border-t border-line-color ",
-                      generateBorder(i, e.name.length)
+                      generateBorder(i, datas.anak.length)
                     )}
                   >
                     <div className="flex justify-between text-heading-1 font-semibold text-[22px]">
