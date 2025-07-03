@@ -53,13 +53,13 @@ export default async function Fasilitas() {
     {
       id: 1,
       title: "Kenyamanan Anda yang Utama",
-      facilities,
+      facilities: facilities?.filter((f) => f.category === 'section-1'),
     },
-    // {
-    //   id: 2,
-    //   title: "Teknologi Modern, Hasil Presisi",
-    //   facilities,
-    // },
+    {
+      id: 2,
+      title: "Teknologi Modern, Hasil Presisi",
+      facilities: facilities?.filter((f) => f.category === 'section-2'),
+    },
   ];
 
   return (

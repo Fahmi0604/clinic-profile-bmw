@@ -45,7 +45,7 @@ export async function GET() {
           loc: `https://bmwdentalclinic.com/blogs/${blog.slug}`,
           lastmod: blog.published_at,
           changefreq: "weekly",
-          priority: 0.7,
+          priority: 0.8,
         })) || [];
 
       const urls: Record<string, string | number>[] = [

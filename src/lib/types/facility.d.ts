@@ -5,6 +5,8 @@ declare type Facility = {
   description: string;
   thumbnailUrl: string;
   imageUrls: string[];
+  isHighlighted: boolean;
+  category: string;
   created_at: string;
   updated_at: string;
 };
