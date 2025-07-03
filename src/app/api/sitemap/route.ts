@@ -1,4 +1,4 @@
-import { getBlogs } from "@/lib/api";
+import { getBlogsForSitemap } from "@/lib/api";
 import { NextResponse } from "next/server";
 
 let cachedSitemap: string | null = null;
@@ -10,7 +10,7 @@ export async function GET() {
   // Refresh cache every hour
   if (!cachedSitemap || now - lastFetched > 1000 * 60 * 60) {
     try {
-      const response = await getBlogs();
+      const response = await getBlogsForSitemap();
 
       const blogs = response.data;
 

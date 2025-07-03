@@ -89,6 +89,19 @@ export async function getBlogs(): Promise<BaseResponse<Post>> {
   return res;
 }
 
+export async function getBlogsForSitemap(): Promise<BaseResponse<Post>> {
+  const res = await fetcher<BaseResponse<Post>>(`${BASE_URL}/posts`, {
+    next: {
+      revalidate: 3600,
+    },
+    // headers: {
+    //   Authorization: `Bearer eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIn0..Goq3DwXNNOPqtez1.drTTp0wfOa2qI12MNrTRUXFhQhFHEKV2KaplMOj1cGyC5oNnpYXs68ORc5_VEQSOVNNBydHrpRYvuTExqIV4zD2D_7PJTxcAjGkP9EpdN_jpBlx9vn4nVH1f-SivP65Ypv0xYeI-RLgh5APzp2RGxsoLUpvUD_p_Au2eHmIKTGeu2JC1PZ-RCfYJainNWO-VmDGni9MMJE9g4ut5SjJBhqRUwxzyqY0h83hNlsHfWrEw5ECk.hB7Eza35UwgtbLaRm0LI1g`,
+    // },
+  });
+
+  return res;
+}
+
 export async function getSettings(): Promise<BaseResponseDetail<Setting>> {
   const res = await fetcher<BaseResponseDetail<Setting>>(
     `${BASE_URL}/settings`,
