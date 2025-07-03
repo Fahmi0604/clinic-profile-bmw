@@ -14,11 +14,11 @@ declare type Post = {
   //     "bannerImg": "https://api.cms.ts-exp.com/storage/images/2025/06/ddb6027ae29eb19d963d730726282758.jpg"
   // }
   cta: {
-    headline: string;
+    title: string;
     description: string;
-    buttonText: string | null;
-    buttonUrl: string | null;
-    bannerImg: string;
+    url: string;
+    textButton: string;
+    imgBanner: string;
   }[];
   relatedPosts: string[];
   tags: string[];
