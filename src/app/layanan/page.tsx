@@ -81,11 +81,17 @@ export default async function Layanan() {
   // ]
 
   const generateBorder = (index: number, length: number) => {
-    if (index !== 0 && index !== 1) return "border-t";
-    if (index % 2 === 0) return "md:border-r";
-    if (index % 2 !== 0 && length % 2 !== 0) return "md:border-b";
+    // console.log('index: ', index);
+    console.log(`index2: ${index}`, index % 2 === 1);
 
-    return "";
+    let classNames = ''
+
+    if (index !== 0 && index !== 1) classNames += ' border-t';
+    if (index % 2 === 0) classNames += ' md:border-r';
+    if (index % 2 !== 0 && length % 2 !== 0) classNames += ' md:border-b';
+    if (index === (length - 1) && length % 2 !== 0) classNames += ' md:border-b';
+
+    return classNames;
   };
 
   if (!_services) return notFound();
@@ -163,11 +169,10 @@ export default async function Layanan() {
                   <div className="z-20 w-full h-4 bg-gradient-to-b from-gold-primary to-white" />
                 </div>
               </div>
-              {datas.umum?.map((e, i) => (
-                <div key={i} className="bg-white grid grid-cols-1 md:grid-cols-2 rounded-b-xl">
-                  {/* {e.name.map((f, i) => ( */}
+              <div className="bg-white grid grid-cols-1 md:grid-cols-2 rounded-b-xl">
+                {datas.umum?.map((e, i) => (
                   <Link
-                    key={e.name}
+                    key={i}
                     href={`layanan/${e.slug}`}
                     className={cn(
                       "w-full p-6 border-line-color ",
@@ -180,9 +185,8 @@ export default async function Layanan() {
                     </div>
                     <p className="text-body-2 text-lg">{e.description}</p>
                   </Link>
-                  {/* ))} */}
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
 
@@ -208,11 +212,10 @@ export default async function Layanan() {
                   <div className="z-20 w-full h-4 bg-gradient-to-b from-gold-primary to-white" />
                 </div>
               </div>
-              {datas.lansia?.map((e, i) => (
-                <div key={i} className="bg-white grid grid-cols-1 md:grid-cols-2 rounded-b-xl">
-                  {/* {e.name.map((f, i) => ( */}
+              <div className="bg-white grid grid-cols-1 md:grid-cols-2 rounded-b-xl">
+                {datas.lansia?.map((e, i) => (
                   <Link
-                    key={e.name}
+                    key={i}
                     href={`layanan/${e.slug}`}
                     className={cn(
                       "w-full p-6 border-t border-line-color ",
@@ -225,9 +228,8 @@ export default async function Layanan() {
                     </div>
                     <p className="text-body-2 text-lg">{e.description}</p>
                   </Link>
-                  {/* ))} */}
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
 
@@ -253,11 +255,10 @@ export default async function Layanan() {
                   <div className="z-20 w-full h-4 bg-gradient-to-b from-gold-primary to-white" />
                 </div>
               </div>
-              {datas.anak?.map((e, i) => (
-                <div key={i} className="bg-white grid grid-cols-1 md:grid-cols-2 rounded-b-xl">
-                  {/* {e.name.map((f, i) => ( */}
+              <div className="bg-white grid grid-cols-1 md:grid-cols-2 rounded-b-xl">
+                {datas.anak?.map((e, i) => (
                   <Link
-                    key={e.name}
+                    key={i}
                     href={`layanan/${e.slug}`}
                     className={cn(
                       "w-full p-6 border-t border-line-color ",
@@ -270,9 +271,8 @@ export default async function Layanan() {
                     </div>
                     <p className="text-body-2 text-lg">{e.description}</p>
                   </Link>
-                  {/* ))} */}
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
 
