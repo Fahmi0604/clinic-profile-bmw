@@ -8,8 +8,9 @@ import Image from 'next/image';
 // import JsonLd from '@/lib/components/JsonLd';
 import Icons from '@/components/Icon';
 import Link from 'next/link';
-import { BeforeAfter } from '@/components';
+import { BeforeAfter, PageWrapper } from '@/components';
 import { getServiceBySlug } from '@/lib/api';
+import Cta from '@/components/Cta';
 
 export const revalidate = 60; // ISR regeneration time (60 seconds)
 export const dynamicParams = true; // Allow dynamic params
@@ -47,7 +48,7 @@ export default async function BlogPage({ params }: { params: Promise<{ slug: str
     if (!service) return notFound();
 
     return (
-        <>
+        <PageWrapper>
             {/* <JsonLd schemaType='BlogPosting' data={blog} /> */}
             <section className="flex justify-center px-4 py-8 md:py-20">
                 <div className='w-full md:max-w-3xl xl:max-w-4xl'>
@@ -68,7 +69,7 @@ export default async function BlogPage({ params }: { params: Promise<{ slug: str
                     {/* <p className='text-stone-400'>by {blog.author.name}</p> */}
                     <article className='mt-6 prose lg:prose-lg' dangerouslySetInnerHTML={{ __html: service.data.content }} />
 
-                    {(service.data.beforeImgs?.length && service.data.afterImgs?.length) && (<div className='mt-20 flex justify-center'>
+                    {(Boolean(service.data.beforeImgs?.length) && Boolean(service.data.afterImgs?.length)) && (<div className='mt-20 flex justify-center'>
                         <div className="md:w-[65%] mb-4 md:mb-0">
 
                             <BeforeAfter
@@ -79,8 +80,19 @@ export default async function BlogPage({ params }: { params: Promise<{ slug: str
                             />
                         </div>
                     </div>)}
+
                 </div>
+
             </section>
-        </>
+
+            {Boolean(service.data?.cta) && <Cta
+                title={service.data.cta.title ?? ''}
+                description={service.data.cta.description ?? ''}
+                image={service.data.cta.imgBanner ?? ''}
+                buttonLabel={service.data.cta.textButton ?? ''}
+                url={service.data.cta.url ?? ''}
+            // classNameImage="object-[50%_80%] md:object-[50%_40%]"
+            />}
+        </PageWrapper>
     );
 }

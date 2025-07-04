@@ -13,6 +13,13 @@ declare type Service = {
     type: string;
     price: number;
   }[];
+  cta: {
+    title: string;
+    description: string;
+    textButton: string;
+    url: string;
+    imgBanner: string;
+  };
   created_at: string;
   updated_at: string;
 };
