@@ -19,7 +19,7 @@ declare type Post = {
     url: string;
     textButton: string;
     imgBanner: string;
-  }[];
+  };
   relatedPosts: string[];
   tags: string[];
   category: string[];

@@ -75,12 +75,12 @@ export default async function BlogPage({ params }: { params: Promise<{ slug: str
                         <article className='mt-6 prose lg:prose-lg' dangerouslySetInnerHTML={{ __html: blog.data.content }} />
                     </div>
                 </section>
-                {blog.data.cta?.length && blog.data.cta[0]?.title && <Cta
-                    title={blog.data.cta[0].title ?? ''}
-                    description={blog.data.cta[0].description ?? ''}
-                    image={blog.data.cta[0].imgBanner ?? ''}
-                    buttonLabel={blog.data.cta[0].textButton ?? ''}
-                    url={blog.data.cta[0].url ?? ''}
+                {Boolean(blog.data?.cta) && <Cta
+                    title={blog.data.cta.title ?? ''}
+                    description={blog.data.cta.description ?? ''}
+                    image={blog.data.cta.imgBanner ?? ''}
+                    buttonLabel={blog.data.cta.textButton ?? ''}
+                    url={blog.data.cta.url ?? ''}
                 // classNameImage="object-[50%_80%] md:object-[50%_40%]"
                 />}
             </PageWrapper>
