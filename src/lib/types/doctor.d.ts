@@ -1,6 +1,6 @@
 declare type Education = {
   // year: number
-  institution: string;
+  university: string;
   degree: string;
 };
 

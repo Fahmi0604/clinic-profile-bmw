@@ -188,7 +188,7 @@ export default async function Dokter() {
                 <ul className="list-disc pl-5">
                   {e.educations.map((a, i) => (
                     <li key={i} className="text-body-1">
-                      {a.degree}, {a.institution}
+                      {a.degree}, {a.university}
                     </li>
                   ))}
                 </ul>
