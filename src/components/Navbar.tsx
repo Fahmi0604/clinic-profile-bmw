@@ -50,7 +50,7 @@ export default function Navbar({ settings }: { settings: Setting }) {
                         ))}
                     </nav>
                     {/* <div className="flex items-center gap-4"> */}
-                    <Link href={whatsappLink(settings.contactInfo?.phone ?? '')}>
+                    <Link href={whatsappLink(settings?.socials?.whatsapp ?? '')}>
                         <Button className="hidden md:flex text-md font-outfit text-heading-2 font-semibold rounded-full cursor-pointer bg-gold-primary py-5 mx-4 hover:bg-gold-secondary">
                             <Icons name="whatsapp" className="h-6 w-6 text-heading-2" />
                             Reservasi
