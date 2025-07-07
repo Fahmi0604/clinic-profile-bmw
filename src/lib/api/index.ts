@@ -13,6 +13,9 @@ type BaseResponse<T> = {
 
 export const API_BASE_URL = "https://api.bmwdentalclinic.com/api/";
 const BASE_URL = "https://api.bmwdentalclinic.com/api/" + "public";
+const DEFAULT_REVALIDATE = 43200; // 12 hours
+const DEFAULT_REVALIDATE_BLOGS = 14400; // 4 hours
+
 export async function getDoctors({
   isHighlighted = false,
 }: {
@@ -21,7 +24,8 @@ export async function getDoctors({
   const res = await fetcher<BaseResponse<Doctor>>(
     `${BASE_URL}/doctors?isHighlighted=${isHighlighted ? "true" : "false"}`,
     {
-      cache: "no-store",
+      next: { revalidate: DEFAULT_REVALIDATE },
+      // cache: "no-store",
       // headers: {
       //   Authorization: `Bearer eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIn0..Goq3DwXNNOPqtez1.drTTp0wfOa2qI12MNrTRUXFhQhFHEKV2KaplMOj1cGyC5oNnpYXs68ORc5_VEQSOVNNBydHrpRYvuTExqIV4zD2D_7PJTxcAjGkP9EpdN_jpBlx9vn4nVH1f-SivP65Ypv0xYeI-RLgh5APzp2RGxsoLUpvUD_p_Au2eHmIKTGeu2JC1PZ-RCfYJainNWO-VmDGni9MMJE9g4ut5SjJBhqRUwxzyqY0h83hNlsHfWrEw5ECk.hB7Eza35UwgtbLaRm0LI1g`,
       // },
@@ -41,7 +45,8 @@ export async function getFacilities({
   const res = await fetcher<BaseResponse<Facility>>(
     `${BASE_URL}/facilities?isHighlighted=${isHighlighted ? "true" : "false"}`,
     {
-      cache: "no-store",
+      next: { revalidate: DEFAULT_REVALIDATE },
+      // cache: "no-store",
       // headers: {
       //   Authorization: `Bearer eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIn0..Goq3DwXNNOPqtez1.drTTp0wfOa2qI12MNrTRUXFhQhFHEKV2KaplMOj1cGyC5oNnpYXs68ORc5_VEQSOVNNBydHrpRYvuTExqIV4zD2D_7PJTxcAjGkP9EpdN_jpBlx9vn4nVH1f-SivP65Ypv0xYeI-RLgh5APzp2RGxsoLUpvUD_p_Au2eHmIKTGeu2JC1PZ-RCfYJainNWO-VmDGni9MMJE9g4ut5SjJBhqRUwxzyqY0h83hNlsHfWrEw5ECk.hB7Eza35UwgtbLaRm0LI1g`,
       // },
@@ -53,7 +58,8 @@ export async function getFacilities({
 
 export async function getServices(): Promise<BaseResponse<Service>> {
   const res = await fetcher<BaseResponse<Service>>(`${BASE_URL}/services`, {
-    cache: "no-store",
+    next: { revalidate: DEFAULT_REVALIDATE },
+    // cache: "no-store",
     // headers: {
     //   Authorization: `Bearer eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIn0..Goq3DwXNNOPqtez1.drTTp0wfOa2qI12MNrTRUXFhQhFHEKV2KaplMOj1cGyC5oNnpYXs68ORc5_VEQSOVNNBydHrpRYvuTExqIV4zD2D_7PJTxcAjGkP9EpdN_jpBlx9vn4nVH1f-SivP65Ypv0xYeI-RLgh5APzp2RGxsoLUpvUD_p_Au2eHmIKTGeu2JC1PZ-RCfYJainNWO-VmDGni9MMJE9g4ut5SjJBhqRUwxzyqY0h83hNlsHfWrEw5ECk.hB7Eza35UwgtbLaRm0LI1g`,
     // },
@@ -68,7 +74,8 @@ export async function getServiceBySlug(
   const res = await fetcher<BaseResponseDetail<Service>>(
     `${BASE_URL}/services/${slug}`,
     {
-      cache: "no-store",
+      next: { revalidate: DEFAULT_REVALIDATE },
+      // cache: "no-store",
       // headers: {
       //   Authorization: `Bearer eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIn0..Goq3DwXNNOPqtez1.drTTp0wfOa2qI12MNrTRUXFhQhFHEKV2KaplMOj1cGyC5oNnpYXs68ORc5_VEQSOVNNBydHrpRYvuTExqIV4zD2D_7PJTxcAjGkP9EpdN_jpBlx9vn4nVH1f-SivP65Ypv0xYeI-RLgh5APzp2RGxsoLUpvUD_p_Au2eHmIKTGeu2JC1PZ-RCfYJainNWO-VmDGni9MMJE9g4ut5SjJBhqRUwxzyqY0h83hNlsHfWrEw5ECk.hB7Eza35UwgtbLaRm0LI1g`,
       // },
@@ -80,7 +87,8 @@ export async function getServiceBySlug(
 
 export async function getBlogs(): Promise<BaseResponse<Post>> {
   const res = await fetcher<BaseResponse<Post>>(`${BASE_URL}/posts`, {
-    cache: "no-store",
+    next: { revalidate: DEFAULT_REVALIDATE_BLOGS },
+    // cache: "no-store",
     // headers: {
     //   Authorization: `Bearer eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIn0..Goq3DwXNNOPqtez1.drTTp0wfOa2qI12MNrTRUXFhQhFHEKV2KaplMOj1cGyC5oNnpYXs68ORc5_VEQSOVNNBydHrpRYvuTExqIV4zD2D_7PJTxcAjGkP9EpdN_jpBlx9vn4nVH1f-SivP65Ypv0xYeI-RLgh5APzp2RGxsoLUpvUD_p_Au2eHmIKTGeu2JC1PZ-RCfYJainNWO-VmDGni9MMJE9g4ut5SjJBhqRUwxzyqY0h83hNlsHfWrEw5ECk.hB7Eza35UwgtbLaRm0LI1g`,
     // },
@@ -91,9 +99,7 @@ export async function getBlogs(): Promise<BaseResponse<Post>> {
 
 export async function getBlogsForSitemap(): Promise<BaseResponse<Post>> {
   const res = await fetcher<BaseResponse<Post>>(`${BASE_URL}/posts`, {
-    next: {
-      revalidate: 3600,
-    },
+    next: { revalidate: DEFAULT_REVALIDATE_BLOGS },
     // headers: {
     //   Authorization: `Bearer eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIn0..Goq3DwXNNOPqtez1.drTTp0wfOa2qI12MNrTRUXFhQhFHEKV2KaplMOj1cGyC5oNnpYXs68ORc5_VEQSOVNNBydHrpRYvuTExqIV4zD2D_7PJTxcAjGkP9EpdN_jpBlx9vn4nVH1f-SivP65Ypv0xYeI-RLgh5APzp2RGxsoLUpvUD_p_Au2eHmIKTGeu2JC1PZ-RCfYJainNWO-VmDGni9MMJE9g4ut5SjJBhqRUwxzyqY0h83hNlsHfWrEw5ECk.hB7Eza35UwgtbLaRm0LI1g`,
     // },
@@ -106,7 +112,8 @@ export async function getSettings(): Promise<BaseResponseDetail<Setting>> {
   const res = await fetcher<BaseResponseDetail<Setting>>(
     `${BASE_URL}/settings`,
     {
-      cache: "no-store",
+      next: { revalidate: DEFAULT_REVALIDATE },
+      // cache: "no-store",
       // headers: {
       //   Authorization: `Bearer eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIn0..Goq3DwXNNOPqtez1.drTTp0wfOa2qI12MNrTRUXFhQhFHEKV2KaplMOj1cGyC5oNnpYXs68ORc5_VEQSOVNNBydHrpRYvuTExqIV4zD2D_7PJTxcAjGkP9EpdN_jpBlx9vn4nVH1f-SivP65Ypv0xYeI-RLgh5APzp2RGxsoLUpvUD_p_Au2eHmIKTGeu2JC1PZ-RCfYJainNWO-VmDGni9MMJE9g4ut5SjJBhqRUwxzyqY0h83hNlsHfWrEw5ECk.hB7Eza35UwgtbLaRm0LI1g`,
       // },
@@ -122,7 +129,8 @@ export async function getBlogsBySlug(
   const res = await fetcher<BaseResponseDetail<Post>>(
     `${BASE_URL}/posts/${slug}`,
     {
-      cache: "no-store",
+      next: { revalidate: DEFAULT_REVALIDATE_BLOGS },
+      // cache: "no-store",
       // headers: {
       //   Authorization: `Bearer eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIn0..Goq3DwXNNOPqtez1.drTTp0wfOa2qI12MNrTRUXFhQhFHEKV2KaplMOj1cGyC5oNnpYXs68ORc5_VEQSOVNNBydHrpRYvuTExqIV4zD2D_7PJTxcAjGkP9EpdN_jpBlx9vn4nVH1f-SivP65Ypv0xYeI-RLgh5APzp2RGxsoLUpvUD_p_Au2eHmIKTGeu2JC1PZ-RCfYJainNWO-VmDGni9MMJE9g4ut5SjJBhqRUwxzyqY0h83hNlsHfWrEw5ECk.hB7Eza35UwgtbLaRm0LI1g`,
       // },
