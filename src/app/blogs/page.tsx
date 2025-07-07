@@ -6,6 +6,7 @@ import { format } from 'date-fns'
 import { id } from 'date-fns/locale';
 import Icons from '@/components/Icon';
 import { PageWrapper } from '@/components';
+import { metaData } from "@/lib/utils/metadata";
 import { Metadata } from 'next';
 import { getBlogs } from '@/lib/api';
 import { notFound } from 'next/navigation';
@@ -24,9 +25,13 @@ export const revalidate = 60; // ISR: update list every 60s
 //     return findPublishedBlogs();
 // }
 
-export const metadata: Metadata = {
-    title: "Blog",
-    description: "Blog",
+export async function generateMetadata(): Promise<Metadata> {
+  return metaData({
+    title: 'Blogs',
+    description: 'BMW Dental Clinic menyediakan artikel kesehatan gigi dan mulut yang bermanfaat untuk keluarga Anda.',
+    images: [{ url: '/assets/images/banner-blogs.webp' }],
+    path: '/blogs',
+  });
 };
 
 export default async function BlogListPage() {
