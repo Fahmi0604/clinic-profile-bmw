@@ -1,6 +1,6 @@
 export const dynamic = "force-dynamic";
 
-import { getBlogsForSitemap } from "@/lib/api";
+import { getBlogsForSitemap, getServices } from "@/lib/api";
 import { NextResponse } from "next/server";
 
 let cachedSitemap: string | null = null;
@@ -8,34 +8,42 @@ let lastFetched = 0;
 
 export async function GET() {
   const now = Date.now();
+  const lastMod = new Date().toISOString();
 
   // Refresh cache every hour
   if (!cachedSitemap || now - lastFetched > 1000 * 60 * 60) {
     try {
-      const response = await getBlogsForSitemap();
+      const responseBlog = await getBlogsForSitemap();
+      const blogs = responseBlog.data;
 
-      const blogs = response.data;
+      const responseService = await getServices();
+      const services = responseService.data;
+      console.log(services);
 
       const staticUrls = [
         {
           loc: "https://bmwdentalclinic.com",
           changefreq: "daily",
           priority: 0.7,
+          lastmod: lastMod,
         },
         {
           loc: "https://bmwdentalclinic.com/dokter",
           changefreq: "daily",
           priority: 0.7,
+          lastmod: lastMod,
         },
         {
           loc: "https://bmwdentalclinic.com/layanan",
           changefreq: "daily",
           priority: 0.7,
+          lastmod: lastMod,
         },
         {
           loc: "https://bmwdentalclinic.com/fasilitas",
           changefreq: "daily",
           priority: 0.7,
+          lastmod: lastMod,
         },
         // add other static pages here
       ];
@@ -43,13 +51,22 @@ export async function GET() {
       const blogUrls =
         blogs?.map((blog: Post) => ({
           loc: `https://bmwdentalclinic.com/blogs/${blog.slug}`,
-          lastmod: blog.published_at,
+          lastmod: lastMod,
+          changefreq: "weekly",
+          priority: 0.8,
+        })) || [];
+
+      const serviceUrls =
+        services?.map((service: Service) => ({
+          loc: `https://bmwdentalclinic.com/layanan/${service.slug}`,
+          lastmod: service.updated_at,
           changefreq: "weekly",
           priority: 0.8,
         })) || [];
 
       const urls: Record<string, string | number>[] = [
         ...staticUrls,
+        ...serviceUrls,
         ...blogUrls,
       ];
 
