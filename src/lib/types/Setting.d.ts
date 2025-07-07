@@ -1,6 +1,7 @@
 declare type Setting = {
   id: string;
   webUrl: string;
+  mapUrl: string;
   webName: string;
   aboutUs: string;
   title: string;

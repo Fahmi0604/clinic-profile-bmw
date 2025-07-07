@@ -57,7 +57,7 @@ export default async function Footer({ settings }: { settings: Setting }) {
                             Petisah Tengah, Kec. Medan Petisah
                             Kota Medan, Sumatera Utara 20112`}</p>
 
-                        <Link href={settings?.webUrl ?? ''}>
+                        <Link href={settings?.mapUrl ?? 'https://maps.app.goo.gl/ZBsTVozJhT83xfez7'}>
                             <u className='cursor-pointer'>Lihat di Google Maps</u>
                         </Link>
                     </div>
