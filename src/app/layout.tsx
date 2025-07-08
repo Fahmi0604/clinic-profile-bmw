@@ -7,7 +7,6 @@ import Footer from "@/components/Footer";
 import { CustomFonts } from "./fonts/custom-fonts";
 import { getSettings } from "@/lib/api";
 import Script from "next/script";
-// import { PageWrapper } from "@/components";
 
 const outfit = Outfit({
   variable: "--font-outfit",
