@@ -26,12 +26,12 @@ export const revalidate = 60; // ISR: update list every 60s
 // }
 
 export async function generateMetadata(): Promise<Metadata> {
-  return metaData({
-    title: 'Blogs',
-    description: 'BMW Dental Clinic menyediakan artikel kesehatan gigi dan mulut yang bermanfaat untuk keluarga Anda.',
-    images: [{ url: '/assets/images/banner-blogs.webp' }],
-    path: '/blogs',
-  });
+    return metaData({
+        title: 'Blogs',
+        description: 'BMW Dental Clinic menyediakan artikel kesehatan gigi dan mulut yang bermanfaat untuk keluarga Anda.',
+        images: [{ url: '/assets/images/banner-blogs.avif' }],
+        path: '/blogs',
+    });
 };
 
 export default async function BlogListPage() {
