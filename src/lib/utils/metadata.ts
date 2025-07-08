@@ -26,6 +26,10 @@ export function metaData({
       images: images.map((img) => ({
         // url: img.url.startsWith("http") ? img.url : `${baseUrl}${img.url}`,
         url: img.url,
+        width: 1200,
+        height: 630,
+        alt: description,
+        type: "image/webp",
       })),
       siteName: "BMW Dental Clinic – Klinik Gigi Terbaik di Medan",
     },

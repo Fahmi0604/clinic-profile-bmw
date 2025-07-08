@@ -9,6 +9,7 @@ import { PageWrapper } from '@/components';
 import { Metadata } from 'next';
 import { getBlogs } from '@/lib/api';
 import { notFound } from 'next/navigation';
+import { metaData } from '@/lib/utils/metadata';
 
 export const revalidate = 60; // ISR: update list every 60s
 
@@ -24,9 +25,13 @@ export const revalidate = 60; // ISR: update list every 60s
 //     return findPublishedBlogs();
 // }
 
-export const metadata: Metadata = {
-    title: "Blog",
-    description: "Blog",
+export async function generateMetadata(): Promise<Metadata> {
+    return metaData({
+        title: 'Blogs',
+        description: 'BMW Dental Clinic menyediakan artikel kesehatan gigi dan mulut yang bermanfaat untuk keluarga Anda.',
+        images: [{ url: '/assets/images/banner.webp' }],
+        path: '/blogs',
+    });
 };
 
 export default async function BlogListPage() {
