@@ -29,7 +29,7 @@ export async function generateMetadata(): Promise<Metadata> {
     return metaData({
         title: 'Blogs',
         description: 'BMW Dental Clinic menyediakan artikel kesehatan gigi dan mulut yang bermanfaat untuk keluarga Anda.',
-        images: [{ url: '/assets/images/banner-blogs.avif' }],
+        images: [{ url: '/assets/images/banner.webp' }],
         path: '/blogs',
     });
 };
