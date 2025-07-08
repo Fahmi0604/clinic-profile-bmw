@@ -22,6 +22,17 @@ export async function fetcher<T>(
     return res.json();
   } catch (error) {
     clearTimeout(timeoutId);
+    
+    // Handle different types of errors more gracefully
+    if (error instanceof Error) {
+      if (error.name === 'AbortError') {
+        throw new Error(`Request timeout after ${timeout}ms`);
+      }
+      if (error.message.includes('fetch failed')) {
+        throw new Error(`Network error: Unable to connect to server`);
+      }
+    }
+    
     throw error;
   }
 }
