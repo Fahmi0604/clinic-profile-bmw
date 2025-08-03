@@ -1,3 +1,4 @@
+import { whatsappLink } from "../utils";
 import { fetcher } from "../utils/fetcher";
 
 type BaseResponseDetail<T> = {
@@ -154,7 +155,17 @@ export async function getSettings(): Promise<BaseResponseDetail<Setting>> {
         // },
       }
     );
-    return res;
+    return {
+      ...res,
+      data: {
+        ...res.data,
+        link_whatsapp: whatsappLink(
+          res.data?.socials?.whatsapp || "6285282827258",
+          res.data?.socials?.whatsappMessage ||
+            "Hi Admin BMW, mau konsultasi untuk perawatan saya dan keluarga ya"
+        ),
+      },
+    };
   } catch (error) {
     console.error("Failed to fetch settings:", error);
     // Return fallback data during build failures

@@ -2,7 +2,7 @@ import Image from 'next/image';
 import React from 'react'
 import { Button } from './ui/button';
 import Icons from './Icon';
-import { cn, whatsappLink } from '@/lib/utils';
+import { cn } from '@/lib/utils';
 import { getSettings } from '@/lib/api';
 import Link from 'next/link';
 
@@ -40,7 +40,7 @@ async function Cta(props: CtaProps) {
                     <p className="leading-7 mb-6 md:mb-12 md:text-lg md:max-w-md">{description}</p>
 
                     <div className="flex flex-col md:flex-row gap-4 mb-4">
-                        <Link href={url || whatsappLink(settings.data.socials?.whatsapp ?? '')}>
+                        <Link href={url || settings.data.link_whatsapp || ''}>
                             <Button className="w-full md:w-fit font-outfit font-medium rounded-full bg-white text-heading-2 cursor-pointer py-6 md:py-4 px-3 mb-4 hover:bg-gray-400">
                                 <Icons name="whatsapp" className="w-6 h-6" /> {buttonLabel || "Reservasi Via WhatsApp"}
                             </Button>

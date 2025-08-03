@@ -5,7 +5,6 @@ import Cta from "@/components/Cta";
 import Icons from "@/components/Icon";
 import { Button } from "@/components/ui/button";
 import { getSettings } from "@/lib/api";
-import { whatsappLink } from "@/lib/utils";
 import { metaData } from "@/lib/utils/metadata";
 import DokterSection from "@/sections/home/doctors";
 import FacilitiesPage from "@/sections/home/facilities";
@@ -89,7 +88,7 @@ export default async function Home() {
         image="/assets/images/banner.webp"
         // classNameImage="object-[10%_50%]"
         bottomSlot={<div className="flex flex-col md:flex-row md:gap-4 mb-8">
-          <Link href={whatsappLink(settings.data.socials?.whatsapp ?? 'https://wa.me/6285282827258')}>
+          <Link href={settings.data.link_whatsapp ?? 'https://wa.me/6285282827258'}>
             <Button className="w-full md:w-fit font-outfit font-medium rounded-full bg-gold-primary text-heading-2 cursor-pointer py-6 md:py-4 px-3 mb-4 hover:bg-gold-secondary">
               <Icons name="whatsapp" className="w-6 h-6" /> Reservasi Via WhatsApp
             </Button>

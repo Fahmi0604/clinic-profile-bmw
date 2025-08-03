@@ -4,7 +4,6 @@ import Link from "next/link"
 import Icons from "./Icon"
 import NavbarSheet from "./NavbarSheet"
 import PromoBar from "./PromoBar"
-import { whatsappLink } from "@/lib/utils"
 
 export default function Navbar({ settings }: { settings: Setting }) {
 
@@ -50,7 +49,7 @@ export default function Navbar({ settings }: { settings: Setting }) {
                         ))}
                     </nav>
                     {/* <div className="flex items-center gap-4"> */}
-                    <Link href={whatsappLink(settings?.socials?.whatsapp ?? '')}>
+                    <Link href={settings?.link_whatsapp ?? ''}>
                         <Button className="hidden md:flex text-md font-outfit text-heading-2 font-semibold rounded-full cursor-pointer bg-gold-primary py-5 mx-4 hover:bg-gold-secondary">
                             <Icons name="whatsapp" className="h-6 w-6 text-heading-2" />
                             Reservasi
@@ -59,7 +58,7 @@ export default function Navbar({ settings }: { settings: Setting }) {
                     {/* </div> */}
                     {/* </div> */}
 
-                    <NavbarSheet menuItems={menuItems} />
+                    <NavbarSheet menuItems={menuItems} settings={settings} />
                 </div>
             </header>
         </>

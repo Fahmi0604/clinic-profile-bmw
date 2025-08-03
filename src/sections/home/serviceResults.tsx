@@ -1,7 +1,6 @@
 import { BeforeAfter } from "@/components"
 import Icons from "@/components/Icon"
 import { Button } from "@/components/ui/button"
-import { whatsappLink } from "@/lib/utils"
 import Link from "next/link"
 
 
@@ -16,7 +15,8 @@ function ServiceResultPage({ settings }: { settings: Setting }) {
             labelAfter: "Sesudah",
             imageBefore: '/assets/images/before1.webp',
             imageAfter: '/assets/images/after1.webp',
-            className: ""
+            className: "object-contain md:object-cover"
+
             // className: 'object-right-bottom md:object-bottom'
         },
         {
@@ -27,7 +27,7 @@ function ServiceResultPage({ settings }: { settings: Setting }) {
             labelAfter: "Sesudah",
             imageBefore: '/assets/images/before2.webp',
             imageAfter: '/assets/images/after2.webp',
-            className: ""
+            className: "object-contain md:object-cover"
             // className: 'object-top'
         },
         {
@@ -38,7 +38,7 @@ function ServiceResultPage({ settings }: { settings: Setting }) {
             labelAfter: "Sesudah",
             imageBefore: '/assets/images/before3.webp',
             imageAfter: '/assets/images/after3.webp',
-            className: ""
+            className: "object-contain md:object-cover"
             // className: 'object-center'
         },
     ]
@@ -62,7 +62,7 @@ function ServiceResultPage({ settings }: { settings: Setting }) {
                     ))}
                 </div>
                 <div className='w-full flex justify-center mt-8'>
-                    <Link href={whatsappLink(settings.socials?.whatsapp ?? '')}>
+                    <Link href={settings.link_whatsapp ?? ''}>
                         <Button className="w-full md:w-fit font-outfit font-medium rounded-full bg-gold-primary text-heading-2 cursor-pointer py-6 md:py-4 px-3 hover:bg-gold-secondary">
                             <Icons name="whatsapp" className="w-6 h-6" /> Reservasi Sekarang
                         </Button>

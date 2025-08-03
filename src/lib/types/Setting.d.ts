@@ -16,6 +16,7 @@ declare type Setting = {
   cta: string;
   socials: {
     whatsapp: string;
+    whatsappMessage: string;
     instagram: string;
   };
   contactInfo: {
@@ -25,4 +26,5 @@ declare type Setting = {
   openHours: string;
   created_at: string;
   updated_at: string;
+  link_whatsapp: string;
 };

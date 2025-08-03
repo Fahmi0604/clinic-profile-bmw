@@ -13,9 +13,10 @@ type NavbarSheetProps = {
         label: string;
         href: string;
     }[];
+    settings: Setting;
 }
 
-export default function NavbarSheet({ menuItems = [] }: NavbarSheetProps) {
+export default function NavbarSheet({ menuItems = [], settings }: NavbarSheetProps) {
     const { value, setValue } = useBoolean();
 
     return (
@@ -36,9 +37,11 @@ export default function NavbarSheet({ menuItems = [] }: NavbarSheetProps) {
                     <span className="sr-only">logo</span>
                 </Link>
 
-                <Button className="peer-data-[state=open]:hidden font-outfit font-semibold rounded-full bg-gold-primary text-heading-2 cursor-pointer py-2 px-3">
-                    Reservasi
-                </Button>
+                <Link href={settings?.link_whatsapp ?? ''}>
+                    <Button className="peer-data-[state=open]:hidden font-outfit font-semibold rounded-full bg-gold-primary text-heading-2 cursor-pointer py-2 px-3">
+                        Reservasi
+                    </Button>
+                </Link>
                 <div className="hidden peer-data-[state=open]:block py-2 px-3" />
             </div>
             <SheetContent side="right" className="w-[100vw] mt-[14vh] md:hidden">
@@ -56,10 +59,12 @@ export default function NavbarSheet({ menuItems = [] }: NavbarSheetProps) {
                     ))}
                 </div>
 
-                <Button className="text-md font-outfit text-heading-2 font-semibold flex rounded-full cursor-pointer bg-gold-primary px-6 py-6 mx-4">
-                    <Icons name="whatsapp" className="h-6 w-6 text-heading-2" />
-                    Reservasi
-                </Button>
+                <Link className="w-full" href={settings?.link_whatsapp ?? ''}>
+                    <Button className="w-full text-md font-outfit text-heading-2 font-semibold flex rounded-full cursor-pointer bg-gold-primary px-6 py-6 mx-4">
+                        <Icons name="whatsapp" className="h-6 w-6 text-heading-2" />
+                        Reservasi
+                    </Button>
+                </Link>
                 <SheetTitle></SheetTitle>
                 <SheetDescription></SheetDescription>
                 <SheetFooter className="mt-0">

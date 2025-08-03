@@ -32,7 +32,7 @@ export function Banner(props: BannerProps) {
                 {/* gotham */}
                 <div className="md:w-fit md:hidden">
                     <FadeInFadeOut delay={0.3} duration={1.2}>
-                        <h1 className="text-4xl xl:text-5xl md:max-w-lg xl:max-w-2xl font-medium font-gotham mb-4 -mr-10">{title}</h1>
+                        <h1 className="text-4xl xl:text-5xl md:max-w-lg xl:max-w-2xl font-medium font-gotham mb-4">{title}</h1>
                     </FadeInFadeOut>
                     <SlideIn from="top" delay={0.5} duration={1.3}>
                         <p className="leading-7 mb-10 md:mb-4 md:text-lg md:max-w-lg">{description}</p>

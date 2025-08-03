@@ -47,9 +47,9 @@ export default async function Footer({ settings }: { settings: Setting }) {
                 <div className='flex flex-col md:flex-row gap-14 md:gap-6'>
                     <div className='flex flex-col gap-4 text-white font-outfit md:px-[10%]'>
                         <Label className='text-lg font-bold'>Hubungi Kami:</Label>
-                        <div className='flex items-center gap-x-2'><Icons name="phone" className='w-6 h-6 text-white' />{settings.contactInfo?.phone ?? ''}</div>
-                        <div className='flex items-center gap-x-2'><Icons name='whatsapp' className='w-6 h-6 text-white' />{settings.socials?.whatsapp ?? ''}</div>
-                        <div className='flex items-center gap-x-2'><Icons name='instagram' className='w-6 h-6 text-white' />{settings.socials?.instagram ?? ''}</div>
+                        <Link target="_blank" href={`tel:${settings.contactInfo?.phone ?? '+626188741581'}`} className='flex items-center gap-x-2'><Icons name="phone" className='w-6 h-6 text-white' />{settings.contactInfo?.phone ?? '+626188741581'}</Link>
+                        <Link target="_blank" href={settings.link_whatsapp ?? 'https://wa.me/6285282827258'} className='flex items-center gap-x-2'><Icons name='whatsapp' className='w-6 h-6 text-white' />{settings.socials?.whatsapp ?? '+6285282827258'}</Link>
+                        <Link target="_blank" href={`https://www.instagram.com/${settings.socials?.instagram ?? 'bmw.dentalclinic'}`} className='flex items-center gap-x-2'><Icons name='instagram' className='w-6 h-6 text-white' />{settings.socials?.instagram ?? '@bmw.dentalclinic'}</Link>
                     </div>
                     <div className='grid gap-4 text-white font-outfit'>
                         <Label className='text-lg font-bold'>Lokasi Klinik:</Label>

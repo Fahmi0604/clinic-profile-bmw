@@ -89,7 +89,7 @@ export default async function Fasilitas() {
                       alt={e.name}
                       width={200}
                       height={200}
-                      className="w-full min-w-1/2 max-w-1/2 h-[275px] md:h-[250px] object-cover rounded-xl"
+                      className="w-full min-w-1/2 md:max-w-1/2 h-[300px] md:h-[250px] object-cover rounded-xl"
                     />
                     <div className="w-full">
                       <h4 className="text-[22px] font-medium font-gotham text-heading-1 mb-2">

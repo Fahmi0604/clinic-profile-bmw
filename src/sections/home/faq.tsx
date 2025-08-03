@@ -7,7 +7,7 @@ export default function FaqPage() {
         {
             id: 1,
             title: "Apakah saya perlu membuat janji terlebih dahulu?",
-            description: "Kami menyarankan untuk membuat janji untuk memastikan ketersediaan jadwal. Janji bisa dilakukan melalui WhatsApp, telepon, atau formulir online. Pasien juga bisa datang tanpa janji (walk-in) jika slot tersedia.",
+            description: "Kami menyarankan untuk membuat janji untuk memastikan ketersediaan jadwal. Janji bisa dilakukan melalui WhatsApp atau telepon. Pasien juga bisa datang tanpa janji (walk-in) jika slot tersedia.",
         },
         {
             id: 2,
@@ -26,7 +26,7 @@ export default function FaqPage() {
         },
         {
             id: 5,
-            title: "Saya merasa takut saat menjalani perawatan gigi. Apakah BMW Dental Care dapat membantu?",
+            title: "Saya merasa takut saat menjalani perawatan gigi. Apakah BMW Dental Clinic dapat membantu?",
             description: "Kami paham bahwa sebagian pasien merasa tidak nyaman atau cemas saat menjalani perawatan gigi. Tim kami berpengalaman dalam menangani kecemasan pasien dan akan berupaya menciptakan suasana yang tenang, nyaman, dan suportif.",
         },
         {
