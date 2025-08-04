@@ -13,18 +13,6 @@ import { metaData } from '@/lib/utils/metadata';
 
 export const revalidate = 60; // ISR: update list every 60s
 
-// async function getBlogs() {
-//     return [
-//         {
-//             title: 'Blog 1',
-//             slug: 'blog-1',
-//             excerpt: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-//             featuredImage: '/assets/images/banner-dokter.webp',
-//         },
-//     ]
-//     return findPublishedBlogs();
-// }
-
 export async function generateMetadata(): Promise<Metadata> {
     return metaData({
         title: 'Blogs',
@@ -36,67 +24,12 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function BlogListPage() {
     const _blogs = await getBlogs()
-    // const blogs = [
-    //     {
-    //         id: 1,
-    //         title: 'Tips Menjaga Kesehatan Gigi Anak Sejak Dini',
-    //         slug: 'blog-1',
-    //         excerpt: 'Menjaga kesehatan gigi anak sejak dini sangat penting untuk perkembangan gigi permanen yang sehat',
-    //         featuredImage: '/assets/images/banner-dokter.webp',
-    //         publishedDate: new Date(),
-    //     },
-    //     {
-    //         id: 2,
-    //         title: 'Blog 2',
-    //         slug: 'blog-2',
-    //         excerpt: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    //         featuredImage: '/assets/images/banner-service.webp',
-    //         publishedDate: new Date(),
-    //     },
-    //     {
-    //         id: 3,
-    //         title: 'Blog 3',
-    //         slug: 'blog-3',
-    //         excerpt: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    //         featuredImage: '/assets/images/banner-facilities.webp',
-    //         publishedDate: new Date(),
-    //     },
-    //     {
-    //         id: 4,
-    //         title: 'Blog 4',
-    //         slug: 'blog-4',
-    //         excerpt: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    //         featuredImage: '/assets/images/banner.webp',
-    //         publishedDate: new Date(),
-    //     },
-    // ]
 
     if (!_blogs) return notFound();
 
     const blogs = _blogs.data;
 
     return (
-        // <main className='p-4'>
-        //     <h1 className='text-stone-600 text-2xl font-semibold mb-6'>Blog Articles</h1>
-        //     <div className='w-full flex gap-4 flex-col lg:flex-row lg:flex-wrap'>
-        //         {blogs.map((blog) => (
-        //             <div key={blog.slug} className='w-full lg:w-[20%] bg-stone-200 border-2 border-stone-500 p-2 rounded-lg shadow shadow-stone-500'>
-        //                 <Link href={`/blogs/${blog.slug}`}>
-        //                     <Image
-        //                         src={blog.featuredImage ?? ''}
-        //                         alt={blog.title ?? ''}
-        //                         width={100}
-        //                         height={100}
-        //                         className='object-cover w-full h-40'
-        //                     />
-        //                     <h2 className='text-stone-500 text-xl font-medium'>{blog.title}</h2>
-        //                     <p className='text-stone-400 text-sm'>{blog.excerpt}</p>
-        //                 </Link>
-        //             </div>
-        //         ))}
-        //     </div>
-        // </main>
-
         <PageWrapper className="flex justify-center px-4 py-8 md:py-20">
             <div className='w-full md:max-w-5xl xl:max-w-6xl'>
                 <div className='mb-24'>

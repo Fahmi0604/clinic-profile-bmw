@@ -193,3 +193,27 @@ export async function getBlogsBySlug(
 
   return res;
 }
+
+export async function getDummyTest(): Promise<BaseResponseDetail<Setting>> {
+  try {
+    const res = await fetcher<BaseResponseDetail<Setting>>(
+      `https://api.chameleonku.my.id/schedule`,
+      {
+        next: { revalidate: DEFAULT_REVALIDATE },
+        // cache: "no-store",
+        // headers: {
+        //   Authorization: `Bearer eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIn0..Goq3DwXNNOPqtez1.drTTp0wfOa2qI12MNrTRUXFhQhFHEKV2KaplMOj1cGyC5oNnpYXs68ORc5_VEQSOVNNBydHrpRYvuTExqIV4zD2D_7PJTxcAjGkP9EpdN_jpBlx9vn4nVH1f-SivP65Ypv0xYeI-RLgh5APzp2RGxsoLUpvUD_p_Au2eHmIKTGeu2JC1PZ-RCfYJainNWO-VmDGni9MMJE9g4ut5SjJBhqRUwxzyqY0h83hNlsHfWrEw5ECk.hB7Eza35UwgtbLaRm0LI1g`,
+        // },
+      }
+    );
+    return res;
+  } catch (error) {
+    console.error("Failed to fetch dummy test:", error);
+    // Return fallback data during build failures
+    return {
+      success: true,
+      message: "Fallback dummy test",
+      data: {} as Setting,
+    };
+  }
+}
