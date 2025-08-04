@@ -4,7 +4,7 @@ import { Banner, PageWrapper } from "@/components";
 import Cta from "@/components/Cta";
 import Icons from "@/components/Icon";
 import { Button } from "@/components/ui/button";
-import { getDummyTest, getSettings } from "@/lib/api";
+import { getSettings } from "@/lib/api";
 import { metaData } from "@/lib/utils/metadata";
 import DokterSection from "@/sections/home/doctors";
 import FacilitiesPage from "@/sections/home/facilities";
@@ -32,9 +32,6 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function Home() {
   const settings = await getSettings()
-  const test = await getDummyTest()
-
-  console.log("CEK :", test);
 
 
   return (
