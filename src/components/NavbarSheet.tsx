@@ -42,7 +42,7 @@ export default function NavbarSheet({ menuItems = [], settings }: NavbarSheetPro
                         Reservasi
                     </Button>
                 </Link>
-                <div className="hidden peer-data-[state=open]:block py-2 px-3" />
+                {/* <div className="hidden peer-data-[state=open]:block py-2 px-3" /> */}
             </div>
             <SheetContent side="right" className="w-[100vw] mt-[14vh] md:hidden">
 
@@ -60,7 +60,7 @@ export default function NavbarSheet({ menuItems = [], settings }: NavbarSheetPro
                 </div>
 
                 <Link className="w-full" href={settings?.link_whatsapp ?? ''}>
-                    <Button className="w-full text-md font-outfit text-heading-2 font-semibold flex rounded-full cursor-pointer bg-gold-primary px-6 py-6 mx-4">
+                    <Button className="w-[90%] text-md font-outfit text-heading-2 font-semibold flex rounded-full cursor-pointer bg-gold-primary px-6 py-6 mx-4">
                         <Icons name="whatsapp" className="h-6 w-6 text-heading-2" />
                         Reservasi
                     </Button>
