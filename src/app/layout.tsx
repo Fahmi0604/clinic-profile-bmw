@@ -7,6 +7,8 @@ import Footer from "@/components/Footer";
 import { CustomFonts } from "./fonts/custom-fonts";
 import { getSettings } from "@/lib/api";
 import Script from "next/script";
+import PixelProviders from "@/lib/utils/pixel";
+import { Suspense } from "react";
 // import { PageWrapper } from "@/components";
 
 const outfit = Outfit({
@@ -21,10 +23,38 @@ export default async function RootLayout({
 }>) {
 
   const settings = await getSettings()
+  const pixelId = 779634624466099;
 
   return (
     <html lang="en">
       <head>
+        {/* Facebook Pixel */}
+        <Script
+          id="fb-pixel-base"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '${pixelId}');
+fbq('track', 'PageView');
+                `,
+          }}
+        />
+        <noscript>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            height="1"
+            width="1"
+            style={{ display: "none" }}
+            src={`https://www.facebook.com/tr?id=${pixelId}&ev=PageView&noscript=1`}
+            alt=""
+          />
+        </noscript>
+
         {/* Google Analytics Script */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-Z67MFBT9H0"
@@ -63,7 +93,11 @@ export default async function RootLayout({
         </noscript>
         <Navbar settings={settings.data} />
         <main className="min-h-screen">
-          {children}
+          <Suspense fallback={null}>
+            <PixelProviders>
+              {children}
+            </PixelProviders>
+          </Suspense>
         </main>
         <Footer settings={settings.data} />
       </body>
